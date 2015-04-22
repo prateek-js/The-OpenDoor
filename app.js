@@ -16,11 +16,20 @@ Ext.application({
     requires: [
         'Ext.MessageBox'
     ],
-
+    profiles: ['Phone', 'Tablet'],
     views: [
-        'Main'
+        'TheOpenDoor.view.component.Header'
     ],
-
+    controllers:[
+        'BaseController',
+        'MainController',
+        'LoginController',
+        'DashboardController'
+    ],
+    models:[
+    ],
+    stores:[
+    ],
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',
@@ -42,9 +51,6 @@ Ext.application({
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
-
-        // Initialize the main view
-        Ext.Viewport.add(Ext.create('TheOpenDoor.view.Main'));
     },
 
     onUpdated: function() {

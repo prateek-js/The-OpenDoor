@@ -400,7 +400,15 @@ Ext.define('Ext.carousel.Carousel', {
         }
 
         this.dragDirection = dragDirection;
-
+        if ((dragDirection == 1 && currentActiveIndex == 0) || (dragDirection == -1 && currentActiveIndex == maxIndex)) {
+            if(dragDirection == 1 && currentActiveIndex == 0){
+                return;
+            }
+            else if (dragDirection == -1 && currentActiveIndex == maxIndex){
+                var maidController = TheOpenDoor.app.getController('TheOpenDoor.controller.MainController');
+                maidController.handleLoginViewInit();
+            }            
+        }
         this.setOffset(offset);
     },
 

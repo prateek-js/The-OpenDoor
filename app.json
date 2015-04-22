@@ -74,6 +74,9 @@
             "path": "app.js",
             "bundle": true,  /* Indicates that all class dependencies are concatenated into this file when build */
             "update": "delta"
+        },{
+            "path": "app/helper/helper.js",
+            "update": "delta"
         }
     ],
 
@@ -96,7 +99,8 @@
     "css": [
         {
             "path": "resources/css/app.css",
-            "update": "delta"
+            "update": "delta",
+            "theme" : "cupertino"
         }
     ],
 
@@ -128,7 +132,8 @@
     "resources": [
         "resources/images",
         "resources/icons",
-        "resources/startup"
+        "resources/startup",
+        "resources/fonts"
     ],
 
     /**

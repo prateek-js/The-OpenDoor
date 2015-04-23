@@ -9,12 +9,16 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
             dashboardView: 'DashboardView',
             slideNavigator: 'SlideNavigator',
             emailFieldId : 'DashboardView [itemId=emailFieldId]',
-            mobileNumberField : 'DashboardView [itemId =mobileNumberField]'
+            mobileNumberField : 'DashboardView [itemId =mobileNumberField]',
+            saveButton: 'DashboardView button[itemId = saveButton]'
         },
 
         control:{
             dashboardView:{
                 initialize: 'handleDashboardViewInit'
+            },
+            saveButton:{
+                tap: 'handleSaveButtonTap'
             }
         },
 	},
@@ -28,6 +32,14 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
                 
             }
         );
+        window.plugins.googleplus.disconnect(
+            function (msg) {
+              
+            }
+        );
+    },
+    handleSaveButtonTap: function(){
+        
     }
 
 });

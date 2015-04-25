@@ -46,18 +46,18 @@ Ext.define("TheOpenDoor.view.phone.SlideNavigator", {
 	        	   
 	        	   me.slideNavigatorItemArray = [{
 	        		   
-	        		   title : 'DashBoard',
-	        		   titlename : 'DashBoard',
+	        		   title : 'Order Page',
+	        		   titlename : 'OrderPage',
 	        		   slideButton: true,
 	        		   cls: 'newUI-header-style',
 	        		   items: [{
 	        			   xtype: 'toolbar',
 	        			   docked: 'top',
-	        			   title: 'DashBoard',
+	        			   title: 'Order Page',
 	        			   cls: 'home-slider-toolbar',
 	        			   ui:'null'
 	        		   },{
-	        			   xtype: 'DashboardView',
+	        			   xtype: 'OrderPageView',
 	        			   maskOnOpen: true
 	        		   }]
 	        	   },{

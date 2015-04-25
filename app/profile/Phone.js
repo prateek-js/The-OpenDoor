@@ -29,11 +29,16 @@ Ext.define('TheOpenDoor.profile.Phone', {
 	launch: function() {
 		//console.log('Phone: launch');
 		//screen.lockOrientation('portrait');
-		Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.Main'));
+		if(localStorage.loggedInFlag == "true"){
+			Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.DashboardView'));
+		}
+		else{	
+			Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.LoginView'));
+		}
 		TheOpenDoor.view.phone.Main.addXtype('Main');
 		TheOpenDoor.view.phone.LoginView.addXtype('LoginView');
-		TheOpenDoor.view.phone.SlideNavigator.addXtype('SlideNavigator');
 		TheOpenDoor.view.phone.DashboardView.addXtype('DashboardView');
 		TheOpenDoor.view.phone.order.OrderPageView.addXtype('OrderPageView');
+		TheOpenDoor.view.phone.SlideNavigator.addXtype('SlideNavigator');
     }    
 });

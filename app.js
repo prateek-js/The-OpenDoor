@@ -27,8 +27,10 @@ Ext.application({
         'DashboardController'
     ],
     models:[
+        'DashboardModel'
     ],
     stores:[
+        'DashboardStore'
     ],
     icon: {
         '57': 'resources/icons/Icon.png',

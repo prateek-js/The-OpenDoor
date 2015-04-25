@@ -21,7 +21,8 @@ Ext.define('TheOpenDoor.view.phone.DashboardView', {
             items:[{
                 xtype: 'image',
                 src: '',
-                cls: ''
+                cls: '',
+                itemdId: ''
             },{
                 xtype: 'emailfield',
                 name: 'email',

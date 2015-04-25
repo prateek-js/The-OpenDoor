@@ -1,4 +1,4 @@
-Ext.define('TheOpenDoor.view.phone.OrderPageView', {
+Ext.define('TheOpenDoor.view.phone.order.OrderPageView', {
     extend: 'Ext.Container',
     requires: [
     ],

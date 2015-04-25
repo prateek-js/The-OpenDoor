@@ -8,7 +8,8 @@ Ext.define('TheOpenDoor.controller.LoginController',{
         refs:{
             loginView: 'LoginView',
             googleBtnContainer : 'LoginView container[itemId = googleBtnContainer]',
-            slideNavigator: 'SlideNavigator'
+            slideNavigator: 'SlideNavigator',
+            dashboardView: 'DashboardView',
         },
 
         control:{
@@ -25,7 +26,7 @@ Ext.define('TheOpenDoor.controller.LoginController',{
             Ext.Viewport.remove(loginView, true);
         }
         this.addToViewPort({
-            xtype : 'SlideNavigator'
+            xtype : 'DashboardView'
         },true);
     },
 
@@ -43,12 +44,15 @@ Ext.define('TheOpenDoor.controller.LoginController',{
         )
     },
     handleLogoutYes: function() {
-        window.plugins.googleplus.logout(
-            function (msg) {
+        // window.plugins.googleplus.logout(
+        //     function (msg) {
                 
-            }
-        );
-        this.disconnect();
+        //     }
+        // );
+        // this.disconnect();
+        this.isloggedIn = false;
+        localStorage.removeItem('loggedInFlag');
+        localStorage.setItem('loggedInFlag', this.isloggedIn);
         var slideNavigator = this.getSlideNavigator();
         if(slideNavigator){
             Ext.Viewport.remove(slideNavigator, true);

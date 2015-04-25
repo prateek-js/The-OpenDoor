@@ -7,14 +7,11 @@ var LRM_TAG='&lrm;';
 var ENABLE_SPINNER_DELAY;
 var SPINNER_DELAY=500;
 
-//tokens for google plus
-var scopes = 'https://www.googleapis.com/auth/plus.me';
-var authResponse = '';
+
 var userName = '';
 var userEmail = '';
 var isloggedIn = '';
     function handleAuthResult(authResult) {
-          authResponse = authResult;
           this.userDetails(authResult);
           TheOpenDoor.app.getController('TheOpenDoor.controller.LoginController').handleSignInSucess();
     }

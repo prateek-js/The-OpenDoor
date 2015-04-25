@@ -25,21 +25,6 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
 
     handleDashboardViewInit: function(){
         this.getEmailFieldId().setValue(userEmail);
-    },
-    logout: function() {
-        window.plugins.googleplus.logout(
-            function (msg) {
-                
-            }
-        );
-        window.plugins.googleplus.disconnect(
-            function (msg) {
-              
-            }
-        );
-    },
-    handleSaveButtonTap: function(){
-        
     }
 
 });

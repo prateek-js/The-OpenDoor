@@ -28,7 +28,7 @@ Ext.define('TheOpenDoor.profile.Phone', {
 	},
 	launch: function() {
 		//console.log('Phone: launch');
-		screen.lockOrientation('portrait');
+		//screen.lockOrientation('portrait');
 		Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.Main'));
 		TheOpenDoor.view.phone.Main.addXtype('Main');
 		TheOpenDoor.view.phone.LoginView.addXtype('LoginView');

@@ -48,6 +48,7 @@ Ext.define('TheOpenDoor.controller.LoginController',{
                 
             }
         );
+        this.disconnect();
         var slideNavigator = this.getSlideNavigator();
         if(slideNavigator){
             Ext.Viewport.remove(slideNavigator, true);

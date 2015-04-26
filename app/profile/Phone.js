@@ -14,7 +14,8 @@ Ext.define('TheOpenDoor.profile.Phone', {
             'Ext.ux.slidenavigation.View',
             'SlideNavigator',
             'DashboardView',
-            'order.OrderPageView'
+            'order.OrderPageView',
+            'order.DateTimeView'
         ]
     },
 	isActive: function() {
@@ -40,5 +41,6 @@ Ext.define('TheOpenDoor.profile.Phone', {
 		TheOpenDoor.view.phone.DashboardView.addXtype('DashboardView');
 		TheOpenDoor.view.phone.order.OrderPageView.addXtype('OrderPageView');
 		TheOpenDoor.view.phone.SlideNavigator.addXtype('SlideNavigator');
+		TheOpenDoor.view.phone.order.DateTimeView.addXtype('DateTimeView');
     }    
 });

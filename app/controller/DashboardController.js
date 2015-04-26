@@ -8,6 +8,7 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
         refs:{
             dashboardView: 'DashboardView',
             slideNavigator: 'SlideNavigator',
+            orderPageView: 'OrderPageView',
             emailFieldId : 'DashboardView [itemId=emailFieldId]',
             mobileNumberField : 'DashboardView [itemId =mobileNumberField]',
             saveButton: 'DashboardView button[itemId = saveButton]',
@@ -17,7 +18,7 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
             addresslineTwo: 'DashboardView [itemId = addresslineTwo]',
             cityField: 'DashboardView [itemId = cityField]',
             stateField: 'DashboardView [itemId = stateField]',
-            pinField: 'DashboardView [itemId = pinField]',
+            pinField: 'DashboardView [itemId = pinField]'
         },
 
         control:{
@@ -38,7 +39,6 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
         this.isloggedIn = true;
         localStorage.removeItem('loggedInFlag');
         localStorage.setItem('loggedInFlag', this.isloggedIn);
-        var dashboardView = this.getDashboardView();
         var dashboardData = {};
         dashboardData.email = this.getEmailField().getValue();
         dashboardData.mobileNumberField = this.getMobileNumberField().getValue();
@@ -48,7 +48,8 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
         dashboardData.stateField = this.getStateField().getValue();
         dashboardData.pinField = this.getPinField().getValue();
         var dashboardStore = Ext.getStore('DashboardStore'); 
-        dashboardStore.addToStore(dashboardData);     
+        dashboardStore.addToStore(dashboardData);
+        var dashboardView = this.getDashboardView();    
         if(dashboardView){
             Ext.Viewport.remove(dashboardView, true);
         }
@@ -56,5 +57,4 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
             xtype : 'SlideNavigator'
         },true);
     }
-
 });

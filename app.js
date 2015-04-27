@@ -18,7 +18,8 @@ Ext.application({
     ],
     profiles: ['Phone', 'Tablet'],
     views: [
-        'TheOpenDoor.view.component.Header'
+        'TheOpenDoor.view.component.Header',
+        'TheOpenDoor.view.component.TimePicker'
     ],
     controllers:[
         'BaseController',

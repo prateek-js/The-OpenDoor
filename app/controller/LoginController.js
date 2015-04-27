@@ -44,12 +44,12 @@ Ext.define('TheOpenDoor.controller.LoginController',{
         )
     },
     handleLogoutYes: function() {
-        // window.plugins.googleplus.logout(
-        //     function (msg) {
+        window.plugins.googleplus.logout(
+            function (msg) {
                 
-        //     }
-        // );
-        // this.disconnect();
+            }
+        );
+        this.disconnect();
         this.isloggedIn = false;
         localStorage.removeItem('loggedInFlag');
         localStorage.setItem('loggedInFlag', this.isloggedIn);

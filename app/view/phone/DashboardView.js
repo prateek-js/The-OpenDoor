@@ -10,6 +10,11 @@ Ext.define('TheOpenDoor.view.phone.DashboardView', {
         },
         cls: 'dashboard-view',
         items:[{
+            xtype: 'textfield',
+            itemId: 'nameField',
+            placeHolder: 'Name',
+            cls: 'other-textfield'
+        },{
             xtype: 'container',
             itemId: 'emailContainer',
             cls: 'emailfield-container',
@@ -77,13 +82,8 @@ Ext.define('TheOpenDoor.view.phone.DashboardView', {
             cls: 'other-textfield'
         },{
             xtype: 'textfield',
-            itemId: 'cityField',
-            placeHolder: 'City',
-            cls: 'other-textfield'
-        },{
-            xtype: 'textfield',
-            itemId: 'stateField',
-            placeHolder: 'State',
+            itemId: 'landmarkField',
+            placeHolder: 'LandMark',
             cls: 'other-textfield'
         },{
             xtype: 'numberfield',

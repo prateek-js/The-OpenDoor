@@ -10,6 +10,7 @@ var SPINNER_DELAY=500;
 
 var userName = '';
 var userEmail = '';
+var userGender = '';
 var isloggedIn = '';
     function handleAuthResult(authResult) {
           this.userDetails(authResult);
@@ -19,7 +20,7 @@ var isloggedIn = '';
         userName = authResult.displayName;
         userEmail = authResult.email;
         var displayImage = authResult.imageUrl;
-        var userGender = authResult.gender;
+        userGender = authResult.gender;
     }
 
 /**

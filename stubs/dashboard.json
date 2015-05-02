@@ -1,0 +1,16 @@
+users:{
+	"email_id": "email@xyz.com",
+	"password": "abcd",
+	"gender": "male/female",
+	"address": {
+		"line1": "180, some building",
+		"line2": "someother road",
+		"landmark": "near that",
+		"city": "moholla",
+		"state": "rajya",
+		"county": "desh",
+		"pincode": 1299468,
+		"name":"naam",
+		"phone_number":9898989898
+	}	
+}

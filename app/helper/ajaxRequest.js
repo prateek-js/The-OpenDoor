@@ -9,14 +9,18 @@ var AjaxRequest = function() {
         "static": 'stubs'
     };
     var URI = {
-        authentication:'server/url',
+        'Authenticate' : 'login.json',
+        'logOut' : 'logout.json',
+        'CreateUser' : 'dashboard.json',
 
     };
 
     //Added for bringing up the static screens when the server is down.
     //For this,  change the mode to 'static'from 'test'
     var STATIC_URI = {
-        authentication:'Authentication.json',
+        'Authenticate' : 'login.json',
+        'logOut' : 'logout.json',
+        'CreateUser' : 'dashboard.json',
         
     };
 
@@ -28,7 +32,7 @@ var AjaxRequest = function() {
     var userId = '';
     var requestInProgress = false;
 
-    var postMethods = ['authentication'];
+    var postMethods = ['authentication','CreateUser'];
     var deleteMethods = [];
 
     return {

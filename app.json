@@ -133,7 +133,8 @@
         "resources/images",
         "resources/icons",
         "resources/startup",
-        "resources/fonts"
+        "resources/fonts",
+        "stubs"
     ],
 
     /**

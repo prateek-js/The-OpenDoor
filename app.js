@@ -25,10 +25,12 @@ Ext.application({
         'BaseController',
         'MainController',
         'LoginController',
-        'DashboardController'
+        'DashboardController',
+        'OrderController'
     ],
     models:[
-        'DashboardModel'
+        'DashboardModel',
+        'DashboardAddressModel'
     ],
     stores:[
         'DashboardStore'

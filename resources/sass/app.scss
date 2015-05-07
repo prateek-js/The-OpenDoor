@@ -50,6 +50,7 @@ body.x-desktop {
 
 // Your custom code goes here...
 @import 'components/header';
+@import 'components/timePicker';
 @import 'common/common';
 @import 'common/font';
 @import 'common/text';
@@ -64,6 +65,7 @@ and (orientation : portrait)
 	@import 'views/phone/login';
 	@import 'views/phone/slider';
 	@import 'views/phone/dashboard';
+	@import 'views/phone/order';
 }
 
 //tablet with portrait

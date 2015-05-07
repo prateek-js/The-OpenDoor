@@ -6,6 +6,7 @@ Ext.define('TheOpenDoor.view.component.Header',{
 	config : {
 		title : '',
 		useBackButton : false,
+        useNextButton : false,
 		ui: 'plain',
         layout: {
             type: 'hbox',
@@ -23,6 +24,15 @@ Ext.define('TheOpenDoor.view.component.Header',{
                 iconCls: 'header-back',
                 iconMask: true,
                 align : 'left',
+                cls: '',
+                hidden : true			
+	        },{
+                xtype: 'button',
+                ui: 'plain',
+                itemId : 'nextButtonId',
+                iconCls: 'header-next',
+                iconMask: true,
+                align : 'right',
                 cls: '',
                 hidden : true			
 	        }]
@@ -49,8 +59,12 @@ Ext.define('TheOpenDoor.view.component.Header',{
         me.callParent();
 
         useBackButton = me.getUseBackButton();
+        useNextButton = me.getUseNextButton();
         if (useBackButton) {
             this.down('#backButtonId').show();
+        }
+        if(useNextButton) {
+            this.down('#nextButtonId').show();
         }
     }
 });

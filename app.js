@@ -30,10 +30,12 @@ Ext.application({
     ],
     models:[
         'DashboardModel',
-        'DashboardAddressModel'
+        'DashboardAddressModel',
+        'OrderServiceModel'
     ],
     stores:[
-        'DashboardStore'
+        'DashboardStore',
+        'OrderServiceStore'
     ],
     icon: {
         '57': 'resources/icons/Icon.png',

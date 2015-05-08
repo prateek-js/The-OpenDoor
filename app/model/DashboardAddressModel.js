@@ -8,13 +8,11 @@ Ext.define('TheOpenDoor.model.DashboardAddressModel',{
 			{name: 'city', type: 'string'},
 			{name: 'state', type: 'string'},
 			{name: 'country', type: 'string'},
-			{name: 'pincode', type: 'integer'},
-			{name: 'name', type: 'string'},
-			{name: 'phone_number', type: 'integer'}
+			{name: 'pincode', type: 'integer'}
 		]
-		// ,
-		// belongsTo: [
-		// 	'TheOpenDoor.model.DashboardModel'
-		// ]
+		,
+		belongsTo: [
+			'TheOpenDoor.model.DashboardModel'
+		]
 	}
 });

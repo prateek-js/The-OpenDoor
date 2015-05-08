@@ -34,8 +34,8 @@ Ext.define('TheOpenDoor.view.component.Header',{
                 iconMask: true,
                 align : 'right',
                 cls: '',
-                hidden : true			
-	        }]
+                hidden : true
+            }]
         }]
     },
 

@@ -21,7 +21,7 @@ var AjaxRequest = function() {
         'Authenticate' : 'login.json',
         'logOut' : 'logout.json',
         'CreateUser' : 'dashboard.json',
-        
+        'OrderService' : 'orderService.json'
     };
 
     //test / production /UAT

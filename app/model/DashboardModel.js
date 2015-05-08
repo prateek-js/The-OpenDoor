@@ -10,12 +10,20 @@ Ext.define('TheOpenDoor.model.DashboardModel', {
 		    {name : 'email', type: 'string' },
 		    {name : 'gender', type: 'string' },
 	        {
-                type: 'hasMany',
-                model: 'TheOpenDoor.model.DashboardAddressModel',
-                name: 'address',
-                associationKey:'address'
+                name: 'address'
             },
-	   	 ]
+	   	 ],
+	    associations:[
+
+                      {
+                          type: 'hasMany',
+                          model: 'TheOpenDoor.model.DashboardAddressModel',
+                          name: 'address',
+                          associationKey:'address'
+
+                      }
+      ]
    	 }
 
 });
+

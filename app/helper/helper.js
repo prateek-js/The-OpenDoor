@@ -12,16 +12,27 @@ var userName = '';
 var userEmail = '';
 var userGender = '';
 var isloggedIn = '';
-    function handleAuthResult(authResult) {
-          this.userDetails(authResult);
-          TheOpenDoor.app.getController('TheOpenDoor.controller.LoginController').handleSignInSucess();
-    }
-    function userDetails(authResult){
-        userName = authResult.displayName;
-        userEmail = authResult.email;
-        var displayImage = authResult.imageUrl;
-        userGender = authResult.gender;
-    }
+
+/**
+    * @method handleAuthResult
+    * @param {authResult}
+    * sucess handler from google 
+*/
+function handleAuthResult(authResult) {
+    this.userDetails(authResult);
+    TheOpenDoor.app.getController('TheOpenDoor.controller.LoginController').handleSignInSucess();
+}
+/**
+    * @method userDetails
+    * @param {authResult}
+    * details from google
+*/
+function userDetails(authResult){
+    userName = authResult.displayName;
+    userEmail = authResult.email;
+    var displayImage = authResult.imageUrl;
+    userGender = authResult.gender;
+}
 
 /**
  * @method showSpinner
@@ -55,17 +66,6 @@ function showSpinner(msg) {
     } else {
         doShowSpinner(msg);
     }
-}
-/*@method okTapped
-* method handler for OK button tap in alert message of failure
-* @param buttonId
-* @param msgBox
-* Navigates back to the previous tab if ok button is tapped froma failure message alert
-*/
-function okTapped(buttonId, opts, msgBox){ 
-        var tabPanel = Ext.ComponentQuery.query('TabPanelView')[0];
-        if(tabPanel !== undefined)
-        	tabPanel.getTabBar().setActiveTab(tabPanel.getPreviousTab());
 }
 /**
  * check for internet connection

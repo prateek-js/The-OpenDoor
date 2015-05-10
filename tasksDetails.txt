@@ -14,3 +14,8 @@
 
 
 stores - dashboard, order, date and time, all address, add/edit address, order final, list of orders, feedback 
+
+
+Modification:- Add name in dashboard which will be editable and prepopulate with gmail display name
+
+custom login - end feature

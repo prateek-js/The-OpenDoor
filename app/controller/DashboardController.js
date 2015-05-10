@@ -2,9 +2,11 @@
 Ext.define('TheOpenDoor.controller.DashboardController',{
 	extend : 'TheOpenDoor.controller.BaseController',
 	requires: [
+        'TheOpenDoor.businessObject.DashboardBO'
     ],
 	config : {
         userProfile: '',
+        dashboardBO: 'TheOpenDoor.businessObject.DashboardBO',
         refs:{
             dashboardView: 'DashboardView',
             slideNavigator: 'SlideNavigator',
@@ -30,7 +32,22 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
         },
 	},
 
+    applyDashboardBO: function(boName) {
+        return Ext.create(boName, this);
+    },
+
     handleDashboardViewInit: function(){
+        showSpinner();
+        var dashboardStore = Ext.getStore('DashboardStore');
+        var me = this;
+        if(dashboardStore.getCount()>0){
+            this.getDashboardSuccess();
+        }else{
+        var successCb = this.getDashboardSuccess,
+            failureCb = this.getDashboardFailure,
+            userId = userInput.userId,
+            this.getDashboardBO().doDashboard(userId,successCb, failureCb);
+        }
         this.getEmailField().setValue(userEmail);
         this.getNameField().setValue(userName);
     },
@@ -56,7 +73,20 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
        
         var dashboardStore = Ext.getStore('DashboardStore'); 
         dashboardStore.addToStore(dashboardData);
-        var dashboardView = this.getDashboardView();    
+        var dashboardView = this.getDashboardView();
+        Ext.Ajax.request({
+            url: 'stubs/dashboard.json',
+            method: 'POST',          
+            headers: {'Content-Type': 'text/json'},
+            waitTitle: 'Connecting',
+            waitMsg: 'Sending data...',                                     
+            params: {
+                "rolename" : rolename
+            },
+            scope:this,
+            success: received,                                    
+            failure: function(){console.log('failure');}
+        });
         if(dashboardView){
             Ext.Viewport.remove(dashboardView, true);
         }

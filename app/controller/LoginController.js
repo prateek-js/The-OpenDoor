@@ -2,9 +2,11 @@
 Ext.define('TheOpenDoor.controller.LoginController',{
 	extend : 'TheOpenDoor.controller.BaseController',
 	requires: [
+     'TheOpenDoor.businessObject.LoginBO'
     ],
 	config : {
         userProfile: '',
+        loginBO : 'TheOpenDoor.businessObject.LoginBO',
         refs:{
             loginView: 'LoginView',
             googleBtnContainer : 'LoginView container[itemId = googleBtnContainer]',
@@ -20,6 +22,10 @@ Ext.define('TheOpenDoor.controller.LoginController',{
         },
 	},
 
+    applyLoginBO: function(boName) {
+        return Ext.create(boName, this);
+    },
+
     handleSignInSucess: function(){
         var loginView = this.getLoginView();
         if(loginView){
@@ -28,9 +34,11 @@ Ext.define('TheOpenDoor.controller.LoginController',{
         this.addToViewPort({
             xtype : 'DashboardView'
         },true);
+        hideSpinner();
     },
 
     handleGoogleSignIn: function() {
+        showSpinner(localeString.loading);
         window.plugins.googleplus.login(
             {
               'iOSApiKey': '370422909165-4sr8egh09qdm62av5sh2npmi3emb076i.apps.googleusercontent.com'

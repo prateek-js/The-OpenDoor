@@ -45,7 +45,7 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
         }else{
         var successCb = this.getDashboardSuccess,
             failureCb = this.getDashboardFailure,
-            userId = userInput.userId,
+            userId = userInput.userId;
             this.getDashboardBO().doDashboard(userId,successCb, failureCb);
         }
         this.getEmailField().setValue(userEmail);

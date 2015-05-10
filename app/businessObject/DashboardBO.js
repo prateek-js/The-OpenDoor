@@ -17,5 +17,7 @@ Ext.define('TheOpenDoor.businessObject.DashboardBO', {
 		}
 		return this;
 	},
-	
+	doDashboard: function(userId,successCb, failureCb){
+		
+	}
 });

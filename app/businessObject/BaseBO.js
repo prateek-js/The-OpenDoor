@@ -8,64 +8,72 @@
 Ext.define('TheOpenDoor.businessObject.BaseBO', {
 
 	//requires: ['TheOpenDoor.helper.BaseUrl'],
-	
+	/**
+     * @property {Boolean} ajaxRequestInProcess flag the denotes is there any pending ajax request in Async Mode
+     */
 	ajaxRequestInProcess : false,
 	
-	getInputHeaderReqParams : function(userId){
-		var inp_req_params = { 
-			'Content-Type': 'application/json',
-            'Cache-Control' : 'no-cache,no-store'
-		};
-		// if(userId != null && userId != undefined){
-		// 	inp_req_params.access_token = sessionId;
-		// }
-		return inp_req_params;
-	},
-	
+    /**
+     * 
+     * @property {Object} commonRequestHeader common ajax request header object
+     */
+	commonRequestHeader : {
+        disableCaching: false,
+        'Content-Type': 'application/json',
+        'Cache-Control' : 'no-cache,no-store'
+    },
+    /**
+     * @property {Object} controllerObj it refers the controllers class obj that invokes this BO classes
+     */
+    controllerObj: null,
+    /**
+     * @property {Function} successCb success callback function when ajax request response computation succeed
+     */
+    successCb: null,
+    /**
+     * @property {Function} failureCb failure callback function when ajax request response computation fails
+     */
+    failureCb: null,
+    /**
+     * @property {Object} inputDetails Object that contains the ajax request input parameters
+     */
+    inputDetails: {},
+    /**
+     * @property {String} responseType the api response type
+     */
+    responseType: 'json',
+
+    /**
+     * ajax request header parameter objects
+     * @param {String} sessionId the session ID
+     * @return {Object} the request header parameters
+     */
+    getInputHeaderReqParams : function(userId){
+        var inp_req_params = {};
+        if(userId !== null && userId !== undefined){
+            inp_req_params.access_token = userId;
+        }
+        return inp_req_params;
+    },
+    /**
+     * invoke the callback method based on scope object
+     * @param {Function} cbFunction callback function
+     * @param {Array} args Function arguments
+     */
     invokeCb: function (cbFunction, args) {
         if (this.controllerObj && cbFunction) {
             cbFunction.apply (this.controllerObj, args);
         }
-        else {
-            
-        }
     },
-    
-    ajaxRequestException: function(conn, response, options, e){
-    	
-    	if(response.status != null && (response.status == 505 || response.status == 500 || response.status == 503 || response.status == 400)){
-    		hideSpinner();
-    		//console.log('response',response);
-        	//console.log('options',options);
-    		delete options.failure;
-    		delete options.callback;
-    		//Display Error Message
-    		//if(!this.ajaxRequestInProcess){
-	    	if(response.status == 505){
-	           	if(response.responseText){
-	          		var decodedObj = Ext.decode(response.responseText, true);
-	           		if(decodedObj && decodedObj.error_description){
-	           			var errorText = decodedObj.error_description;
-	           			showErrorDialog(false, false, errorText);
-	           		    return false;
-	           		}
-	            }            	
-	        }
-	    	var errorText = localeString.unable_process_error;
-	    	showErrorDialog(false, false, errorText);
-	        this.ajaxRequestInProcess = true;
-	        return false;  		
-    	}
-    },
-        
     doSendAjax: function (requestObj) {
     	//console.log('doSendAjax');
         if (isOnLine()) {
-        	Ext.Ajax.on('requestexception',this.ajaxRequestException, this);
-        	Ext.Ajax.request(requestObj);
+        	requestObj = Ext.applyIf(requestObj, me.commonRequestHeader); 
+            Ext.Ajax.request(requestObj);
         }
         else {
-        	this.invokeCb (this.failureCb, [null, false, localeString.errorMsg_noInternetConnection]);
+        	//Display Error Message, if no internet connection
+            showErrorDialog(null, true, true);
         }
     },
     
@@ -87,10 +95,40 @@ Ext.define('TheOpenDoor.businessObject.BaseBO', {
         
         
         if (errorHandled) {
-            this.invokeCb (this.failureCb, [errorText, sessionTimeout, false, errorText]);
+            showErrorDialog(null, true, true);
         }
         
         return errorHandled;
-    }
-    
+    },
+
+    /**
+     * method will decode the api response based on responseType property
+     * @param {Object} responseObj api response object
+     * @return {Object} decoded response object 
+     */
+    decodeAPIresponse: function(responseObj){
+        var me = this, decodedObject = null;
+        if(me.responseType == 'json'){
+            decodedObject = (responseObj.responseText && responseObj.responseText.length) ? 
+                    Ext.decode (responseObj.responseText, true) : null;
+        }
+        return decodedObject;
+    },
+    /**
+     * failure Base BO callback
+     * @param {Array/Object} responseObj api response data
+     * @param {Boolean} userLogin user logged in
+     * @param {String} errorText error message
+     */
+    failureBaseBOCallback: function(responseObj, errorText){
+        var me = this, decodedObj = null, errorHandled = false;
+        decodedObj = me.decodeAPIresponse(responseObj);        
+        if(typeof errorText === 'undefined'){
+            errorText = localeString.errorGenericMessage;
+        }
+        //errorHandled = this.genericErrorCheck(decodedObj, userLogin, bypassDefaultErrorCheck);
+        //if(!errorHandled){
+            this.invokeCb (this.failureCb, [decodedObj, errorText, false]);
+        //}
+    },
 });

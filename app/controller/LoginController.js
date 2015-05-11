@@ -26,6 +26,11 @@ Ext.define('TheOpenDoor.controller.LoginController',{
         return Ext.create(boName, this);
     },
 
+    handleSignInDataSend: function(authResult){
+        this.getLoginBO().doUserLogin(authResult, successCb, failureCb);
+        this.handleSignInSucess(); 
+    },
+
     handleSignInSucess: function(){
         var loginView = this.getLoginView();
         if(loginView){

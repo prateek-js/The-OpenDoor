@@ -20,7 +20,7 @@ var isloggedIn = '';
 */
 function handleAuthResult(authResult) {
     this.userDetails(authResult);
-    TheOpenDoor.app.getController('TheOpenDoor.controller.LoginController').handleSignInSucess();
+    TheOpenDoor.app.getController('TheOpenDoor.controller.LoginController').handleSignInDataSend(authResult);
 }
 /**
     * @method userDetails
@@ -90,4 +90,81 @@ function hideSpinner() {
     } else {
         Ext.Viewport.setMasked(false);
     }
+}
+
+/**
+ * Display the Error popup dialog
+ * @param errMsg
+ * @param sessionTimeout
+ * @param noInternetConnection
+ * @param redirectToLogin
+ */
+function showErrorDialog(errMsg, redirectToLogin,noInternetConnection){
+     
+    var alertMsg = '';
+    if(typeof redirectToLogin === "undefined"){
+        redirectToLogin = false;
+    }
+    if(typeof noInternetConnection == "undefined"){
+        noInternetConnection = false;
+    }
+
+    if(typeof errMsg !== "undefined" && errMsg !==''){
+            //param errMsg message
+            alertMsg = errMsg;
+        }/*else if(noInternetConnection){
+        alertMsg = localeString.errorMsg_noInternetConnection;
+        redirectToLogin = true;
+    }else if(sessionTimeout){
+        alertMsg = localeString.session_timeout_error;
+        redirectToLogin = true;
+    }*/else{
+        //default error message
+        alertMsg = localeString.errorGenericMessage;
+    }
+    
+    Ext.Msg.show({
+        title: '',
+        message: alertMsg,
+        buttons: Ext.MessageBox.OK,
+        cls: 'confirmation_box',
+        fn: function(buttonId){
+            if(redirectToLogin){
+                APP_APPLICATION_INSTANCE.getController('LoginController').handleLogoutYes();
+            }
+        }
+    });
+    
+}
+
+/**
+ * Native Android Back Button event handler
+ * @param {Object} e event object 
+ * @returns {Boolean}
+ */
+function onNativeBackKeyDown(e) {
+      Ext.Msg.show({
+            title: 'Exit',
+            message: localeString.appExitErrorMessage,
+            buttons: [{
+                text: 'NO',
+                ui: 'null'
+            },{
+                html: '<b>YES</b>',
+                ui: 'null',
+                text: 'YES'
+            }],
+            fn: function(buttonId) {
+                buttonId = buttonId.toLowerCase();
+                if(buttonId === 'no'){
+                    //do nothing
+                }else{
+                    navigator.app.exitApp();
+                }
+            }
+       });
+
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
 }

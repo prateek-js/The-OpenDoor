@@ -80,6 +80,12 @@
         },{
             "path": "resources/localization/locale_english.js",
             "update": "delta"
+        },{
+            "path": "app/helper/BaseUrl.js",
+            "update": "delta"
+        },{
+            "path": "app/helper/UrlHelper.js",
+            "update": "delta"
         }
     ],
 

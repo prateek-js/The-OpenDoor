@@ -7,23 +7,16 @@ Ext.define('TheOpenDoor.model.DashboardModel', {
 	extend : 'Ext.data.Model',
 	config : {
 		fields : [
-		    {name : 'email', type: 'string' },
-		    {name : 'gender', type: 'string' },
-	        {
-                name: 'address'
-            },
-	   	 ],
-	    associations:[
-
-                      {
-                          type: 'hasMany',
-                          model: 'TheOpenDoor.model.DashboardAddressModel',
-                          name: 'address',
-                          associationKey:'address'
-
-                      }
-      ]
-   	 }
-
+		  {name: 'line1', type: 'string'},
+      {name: 'line2', type: 'string'},
+      {name: 'landmark', type: 'string'},
+      {name: 'city', type: 'string'},
+      {name: 'state', type: 'string'},
+      {name: 'country', type: 'string'},
+      {name: 'pincode', type: 'integer'},
+      {name: 'name', type: 'string'},
+      {name: 'phone_number', type: 'integer'}
+	  ]
+  }
 });
 

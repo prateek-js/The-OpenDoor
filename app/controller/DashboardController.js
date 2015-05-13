@@ -37,26 +37,13 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
     },
 
     handleDashboardViewInit: function(){
-        showSpinner();
-        var dashboardStore = Ext.getStore('DashboardStore');
-        var me = this;
-        if(dashboardStore.getCount()>0){
-            this.getDashboardSuccess();
-        }else{
-        var successCb = this.getDashboardSuccess,
-            failureCb = this.getDashboardFailure,
-            userId = userInput.userId;
-            this.getDashboardBO().doDashboard(userId,successCb, failureCb);
-        }
         this.getEmailField().setValue(userEmail);
         this.getNameField().setValue(userName);
     },
 
     handleSaveButtonTap: function(){
-        this.isloggedIn = true;
-        localStorage.removeItem('loggedInFlag');
-        localStorage.setItem('loggedInFlag', this.isloggedIn);
-        var dashboardData = {};
+        showSpinner(localeString.loading);
+        
         var dashboardAddressData = {};
         dashboardAddressData.line1 = this.getAddresslineOne().getValue();
         dashboardAddressData.line2 = this.getAddresslineTwo().getValue();
@@ -67,31 +54,42 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
         dashboardAddressData.phone_number = this.getMobileNumberField().getValue();
         dashboardAddressData.pincode = this.getPinField().getValue();
         dashboardAddressData.name = this.getNameField().getValue();
-        dashboardData.address = dashboardAddressData;
-        dashboardData.email = this.getEmailField().getValue();
-        dashboardData.gender = userGender;
-       
-        var dashboardStore = Ext.getStore('DashboardStore'); 
-        dashboardStore.addToStore(dashboardData);
+        
+        var me = this;
+        successCb = this.handleAddAddressSucess,
+        failureCb = this.handleAddAddressFailure;
+        this.getDashboardBO().doDashboard(dashboardAddressData, successCb, failureCb);
+      
+        // Ext.Ajax.request({
+        //     url: 'stubs/dashboard.json',
+        //     method: 'POST',          
+        //     headers: {'Content-Type': 'text/json'},
+        //     waitTitle: 'Connecting',
+        //     waitMsg: 'Sending data...',                                     
+        //     params: {
+        //         "rolename" : rolename
+        //     },
+        //     scope:this,
+        //     success: received,                                    
+        //     failure: function(){console.log('failure');}
+        // });
+    },
+
+    handleAddAddressSucess: function(){
+        this.isloggedIn = true;
+        localStorage.removeItem('loggedInFlag');
+        localStorage.setItem('loggedInFlag', this.isloggedIn);
         var dashboardView = this.getDashboardView();
-        Ext.Ajax.request({
-            url: 'stubs/dashboard.json',
-            method: 'POST',          
-            headers: {'Content-Type': 'text/json'},
-            waitTitle: 'Connecting',
-            waitMsg: 'Sending data...',                                     
-            params: {
-                "rolename" : rolename
-            },
-            scope:this,
-            success: received,                                    
-            failure: function(){console.log('failure');}
-        });
         if(dashboardView){
             Ext.Viewport.remove(dashboardView, true);
         }
         this.addToViewPort({
             xtype : 'SlideNavigator'
         },true);
+        hideSpinner();
+    },
+
+    handleAddAddressFailure: function(errObj, noInternetConnection, errMsg){
+        hideSpinner();
     }
 });

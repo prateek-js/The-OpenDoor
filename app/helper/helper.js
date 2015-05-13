@@ -12,7 +12,7 @@ var userName = '';
 var userEmail = '';
 var userGender = '';
 var isloggedIn = '';
-
+var user_Id = 'abc';
 /**
     * @method handleAuthResult
     * @param {authResult}

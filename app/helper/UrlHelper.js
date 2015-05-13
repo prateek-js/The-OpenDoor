@@ -30,15 +30,16 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 		 * instead use the above serverUrl property 
 		 */
 		_productionUrl : {
-			
+			createUser: BaseUrl.baseUrl+'users',
+			addAddress: BaseUrl.baseUrl+'users'+user_Id+'address',
 		},
 		/**
 		 * not allowed to access _developmentUrl property
 		 * instead use the above serverUrl property 
 		 */
 		_developmentUrl : {
-			
-			
+			createUser: 'stubs/createUser.json',
+			addAddress: 'stubs/dashboard.json',
 		}
 
 	},

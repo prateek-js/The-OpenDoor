@@ -10,7 +10,7 @@ Ext.define('TheOpenDoor.businessObject.LoginBO', {
 	failureCb: null,
 	inputDetails: null,
 	authResult: null,
-	googleDetails: null
+	inputDetails: null,
 
 	constructor: function (cObj) {
 		if (Ext.isDefined (cObj)) {
@@ -23,10 +23,10 @@ Ext.define('TheOpenDoor.businessObject.LoginBO', {
         this.successCb = successCb;
         this.failureCb = failureCb;
         
-        this.googleDetails = {
+        this.inputDetails = {
        			"emailId": authResult.email,
        			"gender": authResult.gender,
-       			"name": authResult.displayName
+       			"displayName": authResult.displayName
         };
         
         this.doLoginAjaxRequest();
@@ -35,13 +35,43 @@ Ext.define('TheOpenDoor.businessObject.LoginBO', {
 	doLoginAjaxRequest: function () {
     	/* Call Login API */
         this.doSendAjax({
-            url: UrlHelper.getServerUrl().memberLogin,
+            url: UrlHelper.getServerUrl().createUser,
             method:'POST',
 			disableCaching: false ,
-            jsonData: this.loginDetails,
+            jsonData: this.inputDetails,
             success: this.onLoginSuccess,
             failure: this.onLoginFailure,
             scope: this
         });        
     },
+
+    onLoginSuccess: function(responseObj, opts){
+    	try{
+        	var createUserStore = Ext.getStore('CreateUserStore');
+        	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
+            if (Ext.isObject(decodedObj)) {
+            	createUserStore.addToStore(decodedObj);
+                loginStore.load();      	
+    	    }else
+            {
+            	var errorText = localeString.errorMsg_invalid_userId_password;
+            	this.invokeCb (this.failureCb, [null, false, false, errorText]);
+            }
+    	}catch(e){
+			var errorText = localeString.errorMsg_defaultFailure;
+			hideSpinner();
+			//Display Error Message
+			showErrorDialog(false, false, errorText);
+		}
+    },
+
+    onLoginFailure: function(responseObj, opts){
+    	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ? 
+        Ext.decode (responseObj.responseText) : null;
+    	errorHandled = this.genericErrorCheck(responseObj, false);
+    	if(!errorHandled){
+            var errorText = "Error";
+            this.invokeCb (this.failureCb, [responseObj, false, false, errorText]);
+    	}
+    }
 });

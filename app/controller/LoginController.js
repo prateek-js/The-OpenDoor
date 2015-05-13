@@ -27,8 +27,10 @@ Ext.define('TheOpenDoor.controller.LoginController',{
     },
 
     handleSignInDataSend: function(authResult){
+        var me = this;
+        successCb = this.handleSignInSucess,
+        failureCb = this.handleSignInFailure;
         this.getLoginBO().doUserLogin(authResult, successCb, failureCb);
-        this.handleSignInSucess(); 
     },
 
     handleSignInSucess: function(){
@@ -42,6 +44,9 @@ Ext.define('TheOpenDoor.controller.LoginController',{
         hideSpinner();
     },
 
+    handleSignInFailure: function(errObj, noInternetConnection, errMsg){
+        hideSpinner();        
+    },
     handleGoogleSignIn: function() {
         showSpinner(localeString.loading);
         window.plugins.googleplus.login(

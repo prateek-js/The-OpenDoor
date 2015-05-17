@@ -54,39 +54,63 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
         dashboardAddressData.phone_number = this.getMobileNumberField().getValue();
         dashboardAddressData.pincode = this.getPinField().getValue();
         dashboardAddressData.name = this.getNameField().getValue();
-        
-        var me = this;
-        successCb = this.handleAddAddressSucess,
-        failureCb = this.handleAddAddressFailure;
-        this.getDashboardBO().doDashboard(dashboardAddressData, successCb, failureCb);
+        var dashboardStore = Ext.getStore('DashboardStore');
+        dashboardStore.addToStore(dashboardAddressData);
+        // var me = this;
+        // successCb = this.handleAddAddressSucess,
+        // failureCb = this.handleAddAddressFailure;
+        // this.getDashboardBO().doDashboard(dashboardAddressData, successCb, failureCb);
       
-        // Ext.Ajax.request({
-        //     url: 'stubs/dashboard.json',
-        //     method: 'POST',          
-        //     headers: {'Content-Type': 'text/json'},
-        //     waitTitle: 'Connecting',
-        //     waitMsg: 'Sending data...',                                     
-        //     params: {
-        //         "rolename" : rolename
-        //     },
-        //     scope:this,
-        //     success: received,                                    
-        //     failure: function(){console.log('failure');}
-        // });
+        Ext.Ajax.request({
+            url: 'stubs/dashboard.json',
+            method: 'PUT',          
+            headers: {'Content-Type': 'text/json'},
+            waitTitle: 'Connecting',
+            waitMsg: 'Sending data...',                                     
+            params: {
+                "line1": dashboardAddressData.line1,
+                "line2": dashboardAddressData.line2,
+                "landmark": dashboardAddressData.landmark,
+                "city": dashboardAddressData.city,
+                "state": dashboardAddressData.state,
+                "country": dashboardAddressData.country,
+                "phone_number": dashboardAddressData.phone_number,
+                "pincode": dashboardAddressData.pincode,
+                "name": dashboardAddressData.name
+            },
+            scope:this,
+            success: this.handleAddAddressSucess,                                    
+            failure: this.handleAddAddressFailure        
+        });
     },
 
-    handleAddAddressSucess: function(){
-        this.isloggedIn = true;
-        localStorage.removeItem('loggedInFlag');
-        localStorage.setItem('loggedInFlag', this.isloggedIn);
-        var dashboardView = this.getDashboardView();
-        if(dashboardView){
-            Ext.Viewport.remove(dashboardView, true);
+    handleAddAddressSucess: function(responseObj, opts){
+        try{
+            var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
+            if (Ext.isObject(decodedObj)) {
+                this.isloggedIn = true;
+                localStorage.removeItem('loggedInFlag');
+                localStorage.setItem('loggedInFlag', this.isloggedIn);
+                var dashboardView = this.getDashboardView();
+                if(dashboardView){
+                    Ext.Viewport.remove(dashboardView, true);
+                }
+                this.addToViewPort({
+                    xtype : 'SlideNavigator'
+                },true);
+                hideSpinner();
+                        
+            }else
+            {
+                var errorText = localeString.errorMsg_invalid_userId_password;
+                this.invokeCb (this.failureCb, [null, false, false, errorText]);
+            }
+        }catch(e){
+            var errorText = localeString.errorMsg_defaultFailure;
+            hideSpinner();
+            //Display Error Message
+            showErrorDialog(false, false, errorText);
         }
-        this.addToViewPort({
-            xtype : 'SlideNavigator'
-        },true);
-        hideSpinner();
     },
 
     handleAddAddressFailure: function(errObj, noInternetConnection, errMsg){

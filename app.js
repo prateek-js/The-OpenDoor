@@ -14,7 +14,8 @@ Ext.application({
     name: 'TheOpenDoor',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'TheOpenDoor.overrides.History'
     ],
     profiles: ['Phone', 'Tablet'],
     views: [
@@ -26,7 +27,8 @@ Ext.application({
         'MainController',
         'LoginController',
         'DashboardController',
-        'OrderController'
+        'OrderController',
+        'OrderStartController'
     ],
     models:[
         'DashboardModel',

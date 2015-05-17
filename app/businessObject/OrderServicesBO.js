@@ -1,5 +1,4 @@
-
-Ext.define('TheOpenDoor.businessObject.DashboardBO', {
+Ext.define('TheOpenDoor.businessObject.OrderServicesBO', {
 	extend: 'TheOpenDoor.businessObject.BaseBO',
 	requires: [
 	           'Ext.Ajax'
@@ -18,43 +17,34 @@ Ext.define('TheOpenDoor.businessObject.DashboardBO', {
 		}
 		return this;
 	},
-	doDashboard: function(dashboardAddressData,successCb, failureCb){
-		this.dashboardAddressData = dashboardAddressData;
+	doOrderServices: function(successCb, failureCb){
         this.successCb = successCb;
         this.failureCb = failureCb;
         this.inputDetails = {
-        	"line1": dashboardAddressData.line1,
-			"line2": dashboardAddressData.line2,
-			"landmark": dashboardAddressData.landmark,
-			"city": dashboardAddressData.city,
-			"state": dashboardAddressData.state,
-			"country": dashboardAddressData.country,
-			"phone_number": dashboardAddressData.phone_number,
-			"pincode": dashboardAddressData.pincode,
-			"name": dashboardAddressData.name
         };
-        this.doAddAddressAjaxRequest();
+        this.doOrderServicesAjaxRequest();
 	},
 
-	doAddAddressAjaxRequest: function () {
+	doOrderServicesAjaxRequest: function () {
     	/* Call Login API */
         this.doSendAjax({
-            url: UrlHelper.getServerUrl().addAddress,
-            method:'PUT',
+            url: UrlHelper.getServerUrl().getServices,
+            method:'GET',
 			disableCaching: false ,
             jsonData: this.inputDetails,
-            success: this.onAddAddressSuccess,
-            failure: this.onAddAddressFailure,
+            success: this.onGetServiceSuccess,
+            failure: this.onGetServiceFailure,
             scope: this
         });        
     },
 
-    onAddAddressSuccess: function(responseObj, opts){
+    onGetServiceSuccess: function(responseObj, opts){
     	try{
-        	var dashboardStore = Ext.getStore('DashboardStore');
+        	var orderServiceStore = Ext.getStore('OrderServiceStore');
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
-            if (Ext.isObject(decodedObj)) {
-            	dashboardStore.addToStore(decodedObj);  
+            if (Ext.isObject(decodedObj) && decodedObj.services != null) {
+            	orderServiceStore.addToStore(decodedObj.services);
+                orderServiceStore.load();  
                     	
     	    }else
             {
@@ -69,7 +59,7 @@ Ext.define('TheOpenDoor.businessObject.DashboardBO', {
 		}
     },
 
-    onAddAddressFailure: function(responseObj, opts){
+    onGetServiceFailure: function(responseObj, opts){
     	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ? 
         Ext.decode (responseObj.responseText) : null;
     	errorHandled = this.genericErrorCheck(responseObj, false);

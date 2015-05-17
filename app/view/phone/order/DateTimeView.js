@@ -11,7 +11,9 @@ Ext.define('TheOpenDoor.view.phone.order.DateTimeView', {
         cls: 'date-view',
         items:[{
             xtype: 'headerPanel',
+            flex: 1,
             width: '100%',
+            itemId: 'headerPanel',
             useBackButton: true,
             useNextButton: true
         },{

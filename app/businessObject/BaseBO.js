@@ -67,30 +67,22 @@ Ext.define('TheOpenDoor.businessObject.BaseBO', {
     },
     doSendAjax: function (requestObj) {
     	//console.log('doSendAjax');
-        if (isOnLine()) {
-        	requestObj = Ext.applyIf(requestObj, me.commonRequestHeader); 
+        // if (isOnLine()) {
+        	requestObj = Ext.applyIf(requestObj, this.commonRequestHeader); 
             Ext.Ajax.request(requestObj);
-        }
-        else {
-        	//Display Error Message, if no internet connection
-            showErrorDialog(null, true, true);
-        }
+        // }
+        // else {
+        // 	//Display Error Message, if no internet connection
+        //     showErrorDialog(null, true, true);
+        // }
     },
     
-    genericErrorCheck: function (responseObj, memberLoginRequest, bypassDefaultErrorCheck) {
+    genericErrorCheck: function (responseObj) {
         var errorHandled = false,
             errorText = localeString.unable_process_error;
-       
-        if(!isLogin){
-        	errorText = localeString.errorMsg_invalid_userId_password;
-        	errorHandled = true;
-        }else if (responseObj.status != null && responseObj.status == 401) {
+        if (responseObj.status != null && responseObj.status == 401) {
             errorText = localeString.session_timeout_error;
             errorHandled = true;
-            sessionTimeout = true;
-        }else if(typeof bypassDefaultErrorCheck === "undefined" || !bypassDefaultErrorCheck){
-        	errorText = localeString.unable_process_error;
-        	errorHandled = true;
         }
         
         

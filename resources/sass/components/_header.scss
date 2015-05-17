@@ -2,5 +2,18 @@
 	background-color: #919191;
 	height: 3rem;
 	width: 100%;
-	
+	.header-back{
+		background-image: url('../images/icons/back-icon.png');
+		background-size: contain;
+		height: 1.18rem;
+		width: 0.75rem;
+		margin-right: 0.2rem;
+	}
+	.header-done{
+		background-image: url('../images/icons/next-icon.png');
+		background-size: contain;
+		height: 1.18rem;
+		width: 0.75rem;
+		margin-left: 0.2rem;
+	}
 }

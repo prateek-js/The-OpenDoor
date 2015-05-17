@@ -1,13 +1,20 @@
-
 Ext.define('TheOpenDoor.view.component.Header',{
-	extend : 'Ext.Panel',
-	xtype : 'headerPanel',
-	requires : ['Ext.TitleBar'],
-	config : {
-		title : '',
-		useBackButton : false,
+    extend : 'Ext.Panel',
+    xtype : 'headerPanel',
+    requires : ['Ext.TitleBar'],
+    config : {
+        cls: '',
+        title : '',
+        useBackButton : false,
+        useDoneButton : false,
         useNextButton : false,
-		ui: 'plain',
+        backButtonLabel:'',
+        backButtonCls:'',
+        ui: 'plain',
+        rightImage: '',
+        leftImage:'',
+        useRightImage: false,
+        useLeftImage: false,
         layout: {
             type: 'hbox',
             docked: 'top',
@@ -17,37 +24,116 @@ Ext.define('TheOpenDoor.view.component.Header',{
             xtype: 'titlebar',
             itemId: 'headerTitleBar',
             cls: 'common-header-background',
+            docked: 'top',
+            align: 'stretch',
             items: [{
                 xtype: 'button',
                 ui: 'plain',
+                text: localeString.back,
                 itemId : 'backButtonId',
                 iconCls: 'header-back',
                 iconMask: true,
                 align : 'left',
-                cls: '',
-                hidden : true			
-	        },{
+                cls: 'back-button-text',
+                hidden : true           
+            },{
+                xtype: 'image',
+                itemId: 'rightImage',
+                src: '',
+                align: 'right',
+                cls: 'rightHeaderImageCls',
+                hidden: true
+            },
+            {
+                xtype: 'image',
+                itemId: 'leftImage',
+                src: '',
+                align: 'left',
+                cls: 'leftHeaderImageCls',
+                hidden: true
+            },
+            {
                 xtype: 'button',
                 ui: 'plain',
-                itemId : 'nextButtonId',
-                iconCls: 'header-next',
+                text: localeString.done,
+                itemId : 'doneButtonId',
+                iconCls: 'header-done',
                 iconMask: true,
+                iconAlign: 'right',
                 align : 'right',
-                cls: '',
-                hidden : true
+                cls: 'done-button-text',
+                hidden : true           
+            },{
+                xtype: 'button',
+                ui: 'plain',
+                text: localeString.next,
+                itemId : 'nextButtonId',
+                iconCls: 'header-done',
+                iconMask: true,
+                iconAlign: 'right',
+                align : 'right',
+                cls: 'done-button-text',
+                hidden : true           
             }]
         }]
     },
 
 
-	/**
+    /**
      * @method applyTitle
      * Set the title in the header panel
      * @param title
      */
-	applyTitle : function(title) {
-		this.down('titlebar').setTitle(title);
-	},
+    applyTitle : function(title) {
+        this.down('titlebar').setTitle(title);
+    },
+
+    /**
+     * @method applyRightDataImage 
+     * it will display the image on right side
+     * pass the src
+     */
+    applyRightImage: function(rightImage){
+        if(!Ext.isEmpty(rightImage)){
+            this.down('#rightImage').setSrc(rightImage);
+        }
+    },
+
+    /**
+     * @method applyLeftImage 
+     * it will display the image on left side
+     * pass the src
+     */
+    applyLeftImage: function(leftImage){
+        if(!Ext.isEmpty(leftImage)){
+            this.down('#leftImage').setSrc(leftImage);
+        }
+    },
+    /**
+     * @method applyBackButtonCls
+     * it will set css class to to the back button
+     * pass the cls
+     */
+    applyBackButtonCls:function(backButtonCls){
+        if(backButtonCls&&this.getUseBackButton())
+          this.down('#backButtonId').setCls(backButtonCls);
+        return backButtonCls;
+    },
+    /**
+     * @method applyDoneButtonCls
+     * it will set css class to to the done button
+     * pass the cls
+     */
+    applyDoneButtonCls:function(doneButtonCls){
+        if(doneButtonCls&&this.getUseDoneButton())
+          this.down('#doneButtonId').setCls(doneButtonCls);
+        return doneButtonCls;
+    },
+    applyNextButtonCls:function(doneButtonCls){
+        if(nextButtonCls&&this.getUseNextButton())
+          this.down('#nextButtonId').setCls(doneButtonCls);
+        return doneButtonCls;
+    },
     /**
      * @method initialize
      * it will initialize the header panel and will check for types of fields
@@ -55,13 +141,25 @@ Ext.define('TheOpenDoor.view.component.Header',{
      */
     initialize: function () {
 
-        var me = this;
+        var me = this, useBackButton = false, useRightImage = false, useLeftImage = false, useDoneButton = false;
         me.callParent();
 
         useBackButton = me.getUseBackButton();
+        useRightImage = me.getUseRightImage();
+        useLeftImage = me.getUseLeftImage();
+        useDoneButton = me.getUseDoneButton();
         useNextButton = me.getUseNextButton();
         if (useBackButton) {
             this.down('#backButtonId').show();
+        }
+        if(useDoneButton){
+            this.down('#doneButtonId').show();
+        }
+        if (useRightImage){
+            this.down('#rightImage').show();
+        }
+        if (useLeftImage) {
+            this.down('#leftImage').show();
         }
         if(useNextButton) {
             this.down('#nextButtonId').show();

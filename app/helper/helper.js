@@ -100,7 +100,6 @@ function hideSpinner() {
  * @param redirectToLogin
  */
 function showErrorDialog(errMsg, redirectToLogin,noInternetConnection){
-     
     var alertMsg = '';
     if(typeof redirectToLogin === "undefined"){
         redirectToLogin = false;
@@ -128,11 +127,6 @@ function showErrorDialog(errMsg, redirectToLogin,noInternetConnection){
         message: alertMsg,
         buttons: Ext.MessageBox.OK,
         cls: 'confirmation_box',
-        fn: function(buttonId){
-            if(redirectToLogin){
-                APP_APPLICATION_INSTANCE.getController('LoginController').handleLogoutYes();
-            }
-        }
     });
     
 }

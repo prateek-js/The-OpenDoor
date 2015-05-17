@@ -17,8 +17,8 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 		buildVersion: "1.0.0",
 		
 
-		mode: 'production',
-		//mode: 'development',
+		//mode: 'production',
+		mode: 'development',
 
 		/**
 		 * This serverUrl property will bind _productionUrl or _developmentUrl based on mode
@@ -32,6 +32,7 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 		_productionUrl : {
 			createUser: BaseUrl.baseUrl+'users',
 			addAddress: BaseUrl.baseUrl+'users'+user_Id+'address',
+			getServices: BaseUrl.baseUrl+'services'
 		},
 		/**
 		 * not allowed to access _developmentUrl property
@@ -40,6 +41,7 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 		_developmentUrl : {
 			createUser: 'stubs/createUser.json',
 			addAddress: 'stubs/dashboard.json',
+			getServices: 'stubs/services.json'
 		}
 
 	},

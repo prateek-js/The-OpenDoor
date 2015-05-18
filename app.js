@@ -34,12 +34,15 @@ Ext.application({
         'DashboardModel',
         'DashboardAddressModel',
         'OrderServiceModel',
-        'CreateUserModel'
+        'CreateUserModel',
+        'GetSlotsModel',
+        'StartTimesModel'
     ],
     stores:[
         'DashboardStore',
         'OrderServiceStore',
-        'CreateUserStore'
+        'CreateUserStore',
+        'GetSlotsStore'
     ],
     icon: {
         '57': 'resources/icons/Icon.png',

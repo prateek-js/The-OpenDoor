@@ -1,4 +1,22 @@
 {
 	"service_id": 1,
-	"start_times"
+	"start_times": [{
+		"start_time" : "8:00:00",
+		"available" : true
+	},{
+		"start_time" : "8:30:00",
+		"available" : true
+	},{
+		"start_time" : "10:00:00",
+		"available" : true
+	},{
+		"start_time" : "12:00:00",
+		"available" : true
+	},{
+		"start_time" : "12:15:00",
+		"available" : false
+	},{
+		"start_time" : "16:45:00",
+		"available" : true
+	}]
 }

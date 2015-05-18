@@ -13,6 +13,7 @@ var userEmail = '';
 var userGender = '';
 var isloggedIn = '';
 var user_Id = 'abc';
+var serviceIdSelected = '';
 /**
     * @method handleAuthResult
     * @param {authResult}

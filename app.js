@@ -33,11 +33,13 @@ Ext.application({
     models:[
         'DashboardModel',
         'DashboardAddressModel',
-        'OrderServiceModel'
+        'OrderServiceModel',
+        'CreateUserModel'
     ],
     stores:[
         'DashboardStore',
-        'OrderServiceStore'
+        'OrderServiceStore',
+        'CreateUserStore'
     ],
     icon: {
         '57': 'resources/icons/Icon.png',

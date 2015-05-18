@@ -22,6 +22,17 @@ Ext.define('TheOpenDoor.view.phone.order.DateTimeView', {
             docked: 'top',
             itemId : 'centerLogo',
             cls: 'center-logo-image',
+        },{
+            xtype: 'container',
+            cls:'timePickerCnt',
+            items:[{
+                xtype:'timepickerfield',
+                cls:'timePickerTextFieldCls',
+                pickerCls:['timePickerCls'],
+                clearIcon:false,
+                itemId:'endTimePickerId',
+                pickerHeight:'10.5em'
+            }]
         }]           
     }
 });

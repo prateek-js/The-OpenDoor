@@ -30,7 +30,6 @@ Ext.define('TheOpenDoor.view.phone.BaseNavigationView',{
 	},
 
 	onNavBack : function() {
-		debugger;
 		console.log('onNavBack');
 		var xType = this.getViewXType(this.getActiveItem());
 		console.log(xType);

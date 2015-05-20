@@ -18,40 +18,37 @@ Ext.define('TheOpenDoor.businessObject.DateTimeBO', {
 		}
 		return this;
 	},
-	doUserLogin: function(authResult, successCb, failureCb){
-		this.authResult = authResult;
+	doGetDateTime: function(successCb, failureCb){
         this.successCb = successCb;
         this.failureCb = failureCb;
         
         this.inputDetails = {
-       			"emailId": authResult.email,
-       			"gender": authResult.gender,
-       			"displayName": authResult.displayName
         };
         
-        this.doLoginAjaxRequest();
+        this.doDateTimeAjaxRequest();
 	},
 
-	doLoginAjaxRequest: function () {
+	doDateTimeAjaxRequest: function () {
     	/* Call Login API */
         this.doSendAjax({
-            url: UrlHelper.getServerUrl().createUser,
+            url: UrlHelper.getServerUrl().getSlots,
             method:'GET',
 			disableCaching: false ,
             jsonData: this.inputDetails,
-            success: this.onLoginSuccess,
-            failure: this.onLoginFailure,
+            success: this.onDateTimeSuccess,
+            failure: this.onDateTimeFailure,
             scope: this
         });        
     },
 
-    onLoginSuccess: function(responseObj, opts){
+    onDateTimeSuccess: function(responseObj, opts){
     	try{
-        	var createUserStore = Ext.getStore('CreateUserStore');
+            debugger;
+        	var getSlotsStore = Ext.getStore('GetSlotsStore');
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
-            if (Ext.isObject(decodedObj)) {
-            	createUserStore.addToStore(decodedObj);
-                loginStore.load();      	
+            if (Ext.isObject(decodedObj) && decodedObj.get_slots != null) {
+            	getSlotsStore.addToStore(decodedObj.get_slots);
+                getSlotsStore.load();      	
     	    }else
             {
             	var errorText = localeString.errorMsg_invalid_userId_password;
@@ -65,7 +62,7 @@ Ext.define('TheOpenDoor.businessObject.DateTimeBO', {
 		}
     },
 
-    onLoginFailure: function(responseObj, opts){
+    onDateTimeFailure: function(responseObj, opts){
     	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ? 
         Ext.decode (responseObj.responseText) : null;
     	errorHandled = this.genericErrorCheck(responseObj, false);

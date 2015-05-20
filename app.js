@@ -20,7 +20,7 @@ Ext.application({
     profiles: ['Phone', 'Tablet'],
     views: [
         'TheOpenDoor.view.component.Header',
-        'TheOpenDoor.view.component.TimePicker'
+        'TheOpenDoor.view.component.DatePicker'
     ],
     controllers:[
         'BaseController',
@@ -42,7 +42,8 @@ Ext.application({
         'DashboardStore',
         'OrderServiceStore',
         'CreateUserStore',
-        'GetSlotsStore'
+        'GetSlotsStore',
+        'DummyStore'
     ],
     icon: {
         '57': 'resources/icons/Icon.png',

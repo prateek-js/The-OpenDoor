@@ -1,22 +1,91 @@
 {
-	"service_id": 1,
-	"start_times": [{
-		"start_time" : "8:00:00",
-		"available" : true
+	"get_slots":[{	
+		"date": "2015-04-05",
+		"service_id": 1,
+		"start_times": [{
+			"start_time" : "8:00:00",
+			"available" : true
+		},{
+			"start_time" : "8:30:00",
+			"available" : true
+		},{
+			"start_time" : "10:00:00",
+			"available" : true
+		},{
+			"start_time" : "12:00:00",
+			"available" : true
+		},{
+			"start_time" : "12:15:00",
+			"available" : false
+		},{
+			"start_time" : "16:45:00",
+			"available" : true
+		}]
 	},{
-		"start_time" : "8:30:00",
-		"available" : true
+		"date": "2015-04-06",
+		"service_id": 1,
+		"start_times": [{
+			"start_time" : "8:00:00",
+			"available" : true
+		},{
+			"start_time" : "8:30:00",
+			"available" : true
+		},{
+			"start_time" : "10:00:00",
+			"available" : true
+		},{
+			"start_time" : "12:00:00",
+			"available" : true
+		},{
+			"start_time" : "12:15:00",
+			"available" : false
+		},{
+			"start_time" : "16:45:00",
+			"available" : true
+		}]	
 	},{
-		"start_time" : "10:00:00",
-		"available" : true
+		"date": "2015-04-07",
+		"service_id": 1,
+		"start_times": [{
+			"start_time" : "8:00:00",
+			"available" : true
+		},{
+			"start_time" : "8:30:00",
+			"available" : true
+		},{
+			"start_time" : "10:00:00",
+			"available" : true
+		},{
+			"start_time" : "12:00:00",
+			"available" : true
+		},{
+			"start_time" : "12:15:00",
+			"available" : false
+		},{
+			"start_time" : "16:45:00",
+			"available" : true
+		}]	
 	},{
-		"start_time" : "12:00:00",
-		"available" : true
-	},{
-		"start_time" : "12:15:00",
-		"available" : false
-	},{
-		"start_time" : "16:45:00",
-		"available" : true
+		"date": "2015-04-08",
+		"service_id": 1,
+		"start_times": [{
+			"start_time" : "8:00:00",
+			"available" : true
+		},{
+			"start_time" : "8:30:00",
+			"available" : true
+		},{
+			"start_time" : "10:00:00",
+			"available" : true
+		},{
+			"start_time" : "12:00:00",
+			"available" : true
+		},{
+			"start_time" : "12:15:00",
+			"available" : false
+		},{
+			"start_time" : "16:45:00",
+			"available" : true
+		}]	
 	}]
 }

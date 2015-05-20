@@ -26,7 +26,7 @@ Ext.define('TheOpenDoor.view.phone.order.DateTimeView', {
             xtype: 'container',
             cls:'timePickerCnt',
             items:[{
-                xtype:'timepickerfield',
+                xtype:'datepickerfield',
                 cls:'timePickerTextFieldCls',
                 pickerCls:['timePickerCls'],
                 clearIcon:false,

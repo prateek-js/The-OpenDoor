@@ -8,6 +8,7 @@ Ext.define('TheOpenDoor.model.GetSlotsModel', {
 	config : {
 		fields : [
 		    {name : 'service_id', type: 'number'},
+		    {name : 'date',type: 'string'},
 		    {
 		    	type: 'hasMany',
                 model: 'TheOpenDoor.model.StartTimesModel',

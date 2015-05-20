@@ -8,12 +8,11 @@ Ext.define('TheOpenDoor.store.GetSlotsStore', {
     
     load:function()
     {
-    	//console.log("loginStore Loaded");
     },
         
-    addToStore : function(dashboardUserData){
+    addToStore : function(getSlots){
     	this.removeAll(true);    	
-    	this.add(dashboardUserData);
+    	this.add(getSlots);
     }
 });
 

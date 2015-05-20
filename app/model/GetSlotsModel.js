@@ -9,11 +9,11 @@ Ext.define('TheOpenDoor.model.GetSlotsModel', {
 		fields : [
 		    {name : 'service_id', type: 'number'},
 		    {name : 'date',type: 'string'},
-		    {
-		    	type: 'hasMany',
-                model: 'TheOpenDoor.model.StartTimesModel',
-                name: 'start_times',
-               	associationKey:'start_times'
+		    {name : 'start_times', type: 'auto'
+		    	// type: 'hasMany',
+       //          model: 'TheOpenDoor.model.StartTimesModel',
+       //          name: 'start_times',
+       //         	associationKey:'start_times'
             }
 	   	]
    	}

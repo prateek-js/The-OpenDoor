@@ -24,14 +24,35 @@ Ext.define('TheOpenDoor.view.phone.order.DateTimeView', {
             cls: 'center-logo-image',
         },{
             xtype: 'container',
-            cls:'timePickerCnt',
-            items:[{
-                xtype:'datepickerfield',
-                cls:'timePickerTextFieldCls',
-                pickerCls:['timePickerCls'],
-                clearIcon:false,
-                itemId:'endTimePickerId',
-                pickerHeight:'10.5em'
+            flex: 9,
+            layout: {
+                type: 'vbox',
+                align: 'center',
+                pack: 'center'
+            },
+            cls: '',           
+            items: [{
+                xtype: 'container',
+                cls:'timePickerCnt',
+                items:[{
+                    xtype:'datepickerfield',
+                    cls:'timePickerTextFieldCls',
+                    pickerCls:['timePickerCls'],
+                    clearIcon:false,
+                    itemId:'datePickerId',
+                    pickerHeight:'10.5em'
+                }]
+            },{
+                xtype: 'container',
+                cls:'timePickerCnt',
+                items:[{
+                    xtype:'timepickerfield',
+                    cls:'timePickerTextFieldCls',
+                    pickerCls:['timePickerCls'],
+                    clearIcon:false,
+                    itemId:'timePickerId',
+                    pickerHeight:'10.5em'
+                }]
             }]
         }]           
     }

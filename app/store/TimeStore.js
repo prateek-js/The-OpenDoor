@@ -3,7 +3,13 @@ Ext.define('TheOpenDoor.store.TimeStore', {
 	requires: ['TheOpenDoor.model.StartTimesModel'],
 	config:{
     	model: "TheOpenDoor.model.StartTimesModel",
-    	storeId : 'TimeStore'
+    	storeId : 'TimeStore',
+        sorters : [
+           {
+               property: 'start_time',
+               direction: 'ASC'
+           }
+        ]
 	},
     load:function()
     {

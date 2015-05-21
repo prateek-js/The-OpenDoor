@@ -10,8 +10,7 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
             dateTimeView: 'DateTimeView',
             baseNavigationView: 'BaseNavigationView',
             myNavView: 'MyNavView',
-            dateTimeViewBackButton: 'DateTimeView [itemId=headerPanel] button[itemId=backButtonId]',
-
+            dateTimeViewBackButton: 'DateTimeView [itemId=headerPanel] button[itemId=backButtonId]'
         },
 
         control:{

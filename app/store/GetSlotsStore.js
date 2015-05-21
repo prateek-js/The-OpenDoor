@@ -3,7 +3,13 @@ Ext.define('TheOpenDoor.store.GetSlotsStore', {
 	requires: ['TheOpenDoor.model.GetSlotsModel'],
 	config:{
     	model: "TheOpenDoor.model.GetSlotsModel",
-    	storeId : 'GetSlotsStore'
+    	storeId : 'GetSlotsStore',
+        sorters : [
+           {
+               property: 'date',
+               direction: 'ASC'
+           }
+        ]
 	},
     
     load:function()

@@ -1,6 +1,6 @@
-Ext.define("TheOpenDoor.view.component.TimePicker", {
+Ext.define("TheOpenDoor.view.component.DatePickerField", {
     extend: "Ext.field.Text",
-    xtype: "timepickerfield",
+    xtype: "DatePickerField",
 	config:{
 			value:'',
 			picker:'',
@@ -21,9 +21,9 @@ Ext.define("TheOpenDoor.view.component.TimePicker", {
 
         var i,
             stringVal,
-			timeArray=[],
+			dateArray=[],
 			stringArray,
-            timePicker = this,
+            datePicker = this,
 			pickerCls=config.pickerCls,
 			pickerHeight=config.pickerHeight;
 
@@ -36,25 +36,30 @@ Ext.define("TheOpenDoor.view.component.TimePicker", {
 			hideOnMaskTap:true,
 			showAnimation:'',
 			hideAnimation:'',
-			id:'timePicker',
+			id:'datePickerCreate',
     		slots : [{
-	             name:'time',
-	             store: Ext.getStore('TimeStore'),
-	             displayField: 'start_time',
-	             valueField:'start_time',
+	             name:'date',
+	             store: Ext.getStore('GetSlotsStore'),
+	             displayField: 'date',
+	             valueField:'date',
 	             align:'center',
-	             title: 'Time'
+	             title: 'Date'
     		}],
 
             listeners: {
 				
 				painted:function(){
-					var value=timePicker.getValue();
+					var value=datePicker.getValue();
 					this.setValue(value);
 				},
                 change: function (picker, values) {
-                	debugger;
-					timePicker.setValue(values.time);
+					datePicker.setValue(values.date);
+					var store=Ext.getStore('GetSlotsStore');
+					var index=store.find('date',values.date);
+					var data=store.getAt(index);
+					var timeArray=data.getData().start_times;
+					var timeStore=Ext.getStore('TimeStore');
+					timeStore.addToStore(timeArray);
                 }
             }
         });

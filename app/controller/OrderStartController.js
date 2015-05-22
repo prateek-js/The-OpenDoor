@@ -10,7 +10,9 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
             dateTimeView: 'DateTimeView',
             baseNavigationView: 'BaseNavigationView',
             myNavView: 'MyNavView',
-            dateTimeViewBackButton: 'DateTimeView [itemId=headerPanel] button[itemId=backButtonId]'
+            dateTimeViewBackButton: 'DateTimeView [itemId=headerPanel] button[itemId=backButtonId]',
+            timePickerId: '[itemId=timePickerId]',
+            datePickerId: '[itemId=datePickerId]'
         },
 
         control:{
@@ -19,6 +21,9 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
             },
             dateTimeViewBackButton:{
             	tap: 'handleDateTimeViewBackButtonTap'
+            },
+            datePickerId:{
+                change:'showTimeFieldHandle'
             }
         },
 	},
@@ -34,5 +39,8 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
 	},
 	handleDateTimeViewBackButtonTap: function(){
 		this.getBaseNavigationView().onNavBack();
-	}
+	},
+    showTimeFieldHandle: function(){
+        this.getTimePickerId().setHidden(false);
+    }
 });

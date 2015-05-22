@@ -32,28 +32,21 @@ Ext.define('TheOpenDoor.view.phone.order.DateTimeView', {
             },
             cls: '',           
             items: [{
-                xtype: 'container',
-                cls:'timePickerCnt',
-                itemId: 'dateContainer',
-                items:[{
-                    xtype:'DatePickerField',
-                    cls:'timePickerTextFieldCls',
-                    pickerCls:['timePickerCls'],
-                    clearIcon:false,
-                    itemId:'datePickerId',
-                    pickerHeight:'10.5em'
-                }]
+                xtype:'DatePickerField',
+                cls:'timePickerTextFieldCls',
+                pickerCls:['timePickerCls'],
+                clearIcon:false,
+                itemId:'datePickerId',
+                pickerHeight:'10.5em'
             },{
-                xtype: 'container',
-                cls:'timePickerCnt',
-                items:[{
-                    xtype:'TimePickerField',
-                    cls:'timePickerTextFieldCls',
-                    pickerCls:['timePickerCls'],
-                    clearIcon:false,
-                    itemId:'timePickerId',
-                    pickerHeight:'10.5em'
-                }]
+                xtype:'TimePickerField',
+                cls:'timePickerTextFieldCls',
+                pickerCls:['timePickerCls'],
+                clearIcon:false,
+                hidden :true,
+                itemId:'timePickerId',
+                pickerHeight:'10.5em'
+
             }]
         }]           
     }

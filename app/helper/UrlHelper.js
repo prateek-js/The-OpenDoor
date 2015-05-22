@@ -31,9 +31,9 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 		 */
 		_productionUrl : {
 			createUser: BaseUrl.baseUrl+'users',
-			addAddress: BaseUrl.baseUrl+'users'+user_Id+'address',
+			addAddress: BaseUrl.baseUrl+'users'+this.user_Id+'address',
 			getServices: BaseUrl.baseUrl+'services',
-			getSlots: BaseUrl.baseUrl+'services'+serviceIdSelected+'get_slots'
+			getSlots: BaseUrl.baseUrl+'services'+this.serviceIdSelected+'get_slots'
 		},
 		/**
 		 * not allowed to access _developmentUrl property

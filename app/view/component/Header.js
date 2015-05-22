@@ -29,7 +29,7 @@ Ext.define('TheOpenDoor.view.component.Header',{
             items: [{
                 xtype: 'button',
                 ui: 'plain',
-                text: localeString.back,
+                text: 'Back',
                 itemId : 'backButtonId',
                 iconCls: 'header-back',
                 iconMask: true,
@@ -55,7 +55,7 @@ Ext.define('TheOpenDoor.view.component.Header',{
             {
                 xtype: 'button',
                 ui: 'plain',
-                text: localeString.done,
+                text: 'Done',
                 itemId : 'doneButtonId',
                 iconCls: 'header-done',
                 iconMask: true,
@@ -66,7 +66,7 @@ Ext.define('TheOpenDoor.view.component.Header',{
             },{
                 xtype: 'button',
                 ui: 'plain',
-                text: localeString.next,
+                text: 'Next',
                 itemId : 'nextButtonId',
                 iconCls: 'header-done',
                 iconMask: true,

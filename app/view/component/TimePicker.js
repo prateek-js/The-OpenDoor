@@ -6,6 +6,7 @@ Ext.define("TheOpenDoor.view.component.TimePicker", {
 			picker:'',
 			readOnly:true,
 			allowTap:true,
+			
 			listeners:{
 				element:'element',
 				tap:function(me, e, eOpts){

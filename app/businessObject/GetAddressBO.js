@@ -39,7 +39,6 @@ Ext.define('TheOpenDoor.businessObject.GetAddressBO', {
     },
 
     onGetAddressSuccess: function(responseObj, opts){
-        debugger;
     	try{
         	var addressGetStore = Ext.getStore('AddressGetStore');
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;

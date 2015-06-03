@@ -18,7 +18,6 @@ Ext.define('TheOpenDoor.businessObject.GetAddressBO', {
 		return this;
 	},
 	doGetAddress: function(successCb, failureCb){
-		this.dashboardAddressData = dashboardAddressData;
         this.successCb = successCb;
         this.failureCb = failureCb;
         this.inputDetails = {
@@ -40,11 +39,12 @@ Ext.define('TheOpenDoor.businessObject.GetAddressBO', {
     },
 
     onGetAddressSuccess: function(responseObj, opts){
+        debugger;
     	try{
         	var addressGetStore = Ext.getStore('AddressGetStore');
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
-            if (Ext.isObject(decodedObj)) {
-            	addressGetStore.addToStore(decodedObj);  
+            if (Ext.isObject(decodedObj)&& decodedObj.address != null) {
+            	addressGetStore.addToStore(decodedObj.address);  
                     	
     	    }else
             {

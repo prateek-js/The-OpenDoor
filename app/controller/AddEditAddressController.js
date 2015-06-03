@@ -6,19 +6,28 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
     ],
 	config : {
         userProfile: '',
-        dashboardBO: 'TheOpenDoor.businessObject.GetAddressBO',
+        addressBO: 'TheOpenDoor.businessObject.GetAddressBO',
         refs:{
-            
+            addressOrderService: 'AddressOrderService'
         },
 
         control:{
-
+             addressOrderService:{
+                initialize: 'handleAddressOrderServiceInit'
+            },
         },
 	},
 
-    applyDashboardBO: function(boName) {
+    applyAddressBO: function(boName) {
         return Ext.create(boName, this);
     },
 
+    handleAddressOrderServiceInit: function(){
+        var me = this;
+        successCb = this.handleGetAddressSucess,
+        failureCb = this.handleGetAddressFailure;
+        this.getAddressBO().doGetAddress(successCb, failureCb);
+
+    }
     
 });

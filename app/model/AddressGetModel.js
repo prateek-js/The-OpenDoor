@@ -11,7 +11,23 @@ Ext.define('TheOpenDoor.model.AddressGetModel',{
 	      	{name: 'country', type: 'string'},
 	      	{name: 'pincode', type: 'integer'},
 	      	{name: 'name', type: 'string'},
-	      	{name: 'phone_number', type: 'integer'}
+	      	{name: 'phone_number', type: 'integer'},
+	      	{
+	      		name: 'address_line', 
+	      		type: 'string',
+	      		convert: function(value, record) {
+            	  	val = record.get('line1')+' '+record.get('line2')+' '+record.get('landmark');
+      				return val;
+      			}
+      		},
+      		{
+      			name: 'address_cps', 
+	      		type: 'string',
+	      		convert: function(value, record) {
+            	  	val = record.get('city')+' '+record.get('pincode')+' '+record.get('state');
+      				return val;
+      			}
+      		}
 		]
 	}
 });

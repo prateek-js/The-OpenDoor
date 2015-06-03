@@ -3,7 +3,7 @@ Ext.define('TheOpenDoor.store.AddressGetStore', {
 	requires: ['TheOpenDoor.model.AddressGetModel'],
 	config:{
     	model: "TheOpenDoor.model.AddressGetModel",
-    	storeId : 'CreateUserStore'
+    	storeId : 'AddressGetStore'
 	},
     
     load:function()

@@ -7,7 +7,10 @@ Ext.define('TheOpenDoor.view.phone.order.AddressOrderService', {
         items : [{
             xtype: 'headerPanel',
             width: '100%',
-            flex: 1
+            itemId: 'headerPanel',
+            flex: 1,
+            useBackButton: true,
+            useNextButton: true
         },{
             xtype: 'image',
             src: 'resources/images/bulletpoint.jpg',

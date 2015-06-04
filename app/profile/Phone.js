@@ -47,13 +47,13 @@ Ext.define('TheOpenDoor.profile.Phone', {
 		TheOpenDoor.view.phone.order.AddressItem.addXtype('AddressItem');
 		TheOpenDoor.view.phone.order.AddressOrderService.addXtype('AddressOrderService');
 		if(localStorage.loggedInFlag == "true"){
-			Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.order.AddressOrderService'));
+			Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.order.OrderPageView'));
 		}
 		else{	
 			//Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.Main'));
 			//Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.LoginView'));
-			//Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.DashboardView'));
-			Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.order.AddressOrderService'));
+			Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.DashboardView'));
+			//Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.order.AddressOrderService'));
 		}
     }    
 });

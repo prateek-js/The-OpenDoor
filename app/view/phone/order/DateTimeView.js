@@ -32,21 +32,47 @@ Ext.define('TheOpenDoor.view.phone.order.DateTimeView', {
             },
             cls: '',           
             items: [{
-                xtype:'DatePickerField',
-                cls:'timePickerTextFieldCls',
-                pickerCls:['timePickerCls'],
-                clearIcon:false,
-                itemId:'datePickerId',
-                pickerHeight:'10.5em'
+                xtype: 'label',
+                html : 'Please select date and time from the available slots',
+                cls : 'date-time-label'
             },{
-                xtype:'TimePickerField',
-                cls:'timePickerTextFieldCls',
-                pickerCls:['timePickerCls'],
-                clearIcon:false,
+                xtype: 'container',
+                layout : {
+                    type: 'hbox'
+                },
+                cls: 'date-picker-container',
+                items:[{
+                    xtype : 'label',
+                    html : 'Order Date',
+                    cls : 'order-date-label'
+                },{
+                   xtype:'DatePickerField',
+                    cls:'timePickerTextFieldCls',
+                    pickerCls:['timePickerCls'],
+                    clearIcon:false,
+                    itemId:'datePickerId',
+                    pickerHeight:'10.5em' 
+                }]                
+            },{
+                xtype: 'container',
+                layout : {
+                    type: 'hbox'
+                },
+                cls: 'time-picker-container',
+                itemId: 'timePickerContainer',
                 hidden :true,
-                itemId:'timePickerId',
-                pickerHeight:'10.5em'
-
+                items:[{
+                    xtype : 'label',
+                    html : 'Order Time',
+                    cls : 'order-time-label'
+                },{
+                    xtype:'TimePickerField',
+                    cls:'timePickerTextFieldCls',
+                    pickerCls:['timePickerCls'],
+                    clearIcon:false,
+                    itemId:'timePickerId',
+                    pickerHeight:'10.5em'
+                }]
             }]
         }]           
     }

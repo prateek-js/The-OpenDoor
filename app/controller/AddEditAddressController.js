@@ -8,12 +8,17 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         userProfile: '',
         addressBO: 'TheOpenDoor.businessObject.GetAddressBO',
         refs:{
-            addressOrderService: 'AddressOrderService'
+            addressOrderService: 'AddressOrderService',
+            baseNavigationView: 'BaseNavigationView',
+            addressBackButton: 'AddressOrderService [itemId=headerPanel] button[itemId=backButtonId]',
         },
 
         control:{
              addressOrderService:{
                 initialize: 'handleAddressOrderServiceInit'
+            },
+            addressBackButton:{
+                tap: 'handleAddressBackButtonTap'
             },
         },
 	},
@@ -28,6 +33,10 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         failureCb = this.handleGetAddressFailure;
         this.getAddressBO().doGetAddress(successCb, failureCb);
 
+    },
+
+    handleAddressBackButtonTap: function(){
+        this.getBaseNavigationView().onNavBack();
     }
     
 });

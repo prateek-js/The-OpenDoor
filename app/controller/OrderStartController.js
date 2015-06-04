@@ -11,8 +11,10 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
             baseNavigationView: 'BaseNavigationView',
             myNavView: 'MyNavView',
             dateTimeViewBackButton: 'DateTimeView [itemId=headerPanel] button[itemId=backButtonId]',
+            dateTimeViewNextButton: 'DateTimeView [itemId=headerPanel] button[itemId=nextButtonId]',
             timePickerId: '[itemId=timePickerId]',
-            datePickerId: '[itemId=datePickerId]'
+            datePickerId: '[itemId=datePickerId]',
+            timePickerContainer : '[itemId=timePickerContainer]'
         },
 
         control:{
@@ -21,6 +23,9 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
             },
             dateTimeViewBackButton:{
             	tap: 'handleDateTimeViewBackButtonTap'
+            },
+            dateTimeViewNextButton:{
+                tap: 'handleDateTimeViewNextButtonTap'
             },
             datePickerId:{
                 change:'showTimeFieldHandle'
@@ -40,7 +45,16 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
 	handleDateTimeViewBackButtonTap: function(){
 		this.getBaseNavigationView().onNavBack();
 	},
+    handleDateTimeViewNextButtonTap: function(){
+        if(this.getDatePickerId().getValue()!= "" && this.getTimePickerId().getValue()!= ""){
+           this.getBaseNavigationView().pushtoNavigationView('AddressOrderService'); 
+        }
+        else{
+            alert("Pls select date and time");
+        }
+        
+    },
     showTimeFieldHandle: function(){
-        this.getTimePickerId().setHidden(false);
+        this.getTimePickerContainer().setHidden(false);
     }
 });

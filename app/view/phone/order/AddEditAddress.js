@@ -10,15 +10,6 @@ Ext.define('TheOpenDoor.view.phone.order.AddEditAddress', {
         },
         cls: 'dashboard-view',
         items:[{
-            xtype: 'headerPanel',
-            width: '100%'
-        },{
-            xtype: 'image',
-            src: 'resources/images/bulletpoint.jpg',
-            docked: 'top',
-            itemId : 'centerLogo',
-            cls: 'center-logo-image',
-        },{
             xtype: 'container',
             layout : {
                 type : 'vbox',

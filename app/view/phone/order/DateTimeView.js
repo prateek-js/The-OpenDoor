@@ -28,9 +28,9 @@ Ext.define('TheOpenDoor.view.phone.order.DateTimeView', {
             layout: {
                 type: 'vbox',
                 align: 'center',
-                pack: 'center'
+                pack: 'stretch'
             },
-            cls: '',           
+            cls: 'date-time-container',           
             items: [{
                 xtype: 'label',
                 html : 'Please select date and time from the available slots',
@@ -47,7 +47,7 @@ Ext.define('TheOpenDoor.view.phone.order.DateTimeView', {
                     cls : 'order-date-label'
                 },{
                    xtype:'DatePickerField',
-                    cls:'timePickerTextFieldCls',
+                    cls:'datePickerTextFieldCls',
                     pickerCls:['timePickerCls'],
                     clearIcon:false,
                     itemId:'datePickerId',
@@ -73,6 +73,11 @@ Ext.define('TheOpenDoor.view.phone.order.DateTimeView', {
                     itemId:'timePickerId',
                     pickerHeight:'10.5em'
                 }]
+            },{
+                xtype: 'label',
+                html: '',
+                cls: 'date-time-selected-label',
+                itemId: 'dateTimeSelectedLabel'
             }]
         }]           
     }

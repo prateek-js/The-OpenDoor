@@ -163,3 +163,40 @@ function onNativeBackKeyDown(e) {
       e.stopPropagation();
       return false;
 }
+
+/**
+ * convert datestring to month name , date and year
+ * @param date
+ * @returns {date in month name format}
+ */
+function convertDateToTimestamp(date){
+     //if (date === "")
+     if(!date)
+     {
+        return null;
+     }
+    var dateItems = date.split('-');
+    var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    var month = months[dateItems[1]-1];
+    var dateRet = dateItems[2]+' '+month+', '+dateItems[0];
+    return dateRet;
+}
+
+/**
+ * Converts time into 12 hours format with am/pm adding
+ * @param time
+ * @returns {time in 12 hours format}
+ */
+
+function convertTimeToTimestamp(time){
+    if(!time){
+       return '';
+    }
+    time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+    if (time.length > 1) { // If time format correct
+        time = time.slice (1);  // Remove full string match value
+        time[5] = +time[0] < 12 ? 'am' : 'pm'; // Set AM/PM
+        time[0] = +time[0] % 12 || 12; // Adjust hours
+    }
+    return time.join (''); // return adjusted time or original string
+}

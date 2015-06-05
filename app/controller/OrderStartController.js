@@ -14,7 +14,8 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
             dateTimeViewNextButton: 'DateTimeView [itemId=headerPanel] button[itemId=nextButtonId]',
             timePickerId: '[itemId=timePickerId]',
             datePickerId: '[itemId=datePickerId]',
-            timePickerContainer : '[itemId=timePickerContainer]'
+            timePickerContainer : '[itemId=timePickerContainer]',
+            dateTimeSelectedLabel : '[itemId=dateTimeSelectedLabel]'
         },
 
         control:{
@@ -29,6 +30,9 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
             },
             datePickerId:{
                 change:'showTimeFieldHandle'
+            },
+            timePickerId:{
+                change: 'showTimeDateLabel'
             }
         },
 	},
@@ -56,5 +60,11 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
     },
     showTimeFieldHandle: function(){
         this.getTimePickerContainer().setHidden(false);
+    },
+    showTimeDateLabel: function(){
+        var dateSelected = convertDateToTimestamp(this.getDatePickerId().getValue());
+        var timeSelected = convertTimeToTimestamp(this.getTimePickerId().getValue());
+        var labelText = "Your Selected Order Date is " +dateSelected+ " at " +timeSelected;
+        this.getDateTimeSelectedLabel().setHtml(labelText);
     }
 });

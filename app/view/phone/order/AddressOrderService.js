@@ -21,22 +21,22 @@ Ext.define('TheOpenDoor.view.phone.order.AddressOrderService', {
             xtype: 'container',
             flex: 9,
             layout: {
-                type: 'vbox',
-                align: 'center',
-                pack: 'center'
+                type: 'vbox'
             },
             cls: 'address-detail-container',
             items:[{
                 xtype: 'button',
                 ui: 'plain',
-                height: '10%',
+                cls: 'add-new-address-button',
                 text: 'Add New Address',
                 itemId: 'addNewAddressBtn'
             },{
+                xtype: 'label',
+                cls: 'address-diff-label',
+                html : 'Or Select any address from below'
+            },{
                 xtype: 'AddressView',
-                cls: 'address-dataview-view',
-                height: '90%',
-                width: '90%'
+                cls: 'address-dataview-view'
             }]                        
         }]
     }

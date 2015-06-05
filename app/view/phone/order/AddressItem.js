@@ -5,20 +5,22 @@ Ext.define('TheOpenDoor.view.phone.order.AddressItem',{
         layout: {
             type: 'vbox'
         },
-        cls: '',
-        height: '10rem',
+        btnRef:'',
+        itemId:'addressItemCnt',
+        cls: 'data-item-container',
         items: [{
         	xtype: 'container',
             itemId: 'addressItem',
-            cls: '',
-            tpl: '<div class=""><div class="">{name}</div><div class="">{address_line}</div><div class="">{address_cps} &nbsp &nbsp {phone_number}</div><div class="">{country}</div></div>',
+            cls: 'full-address-container',
+            tpl: '<div class="full-address-div"><div class="address-name">{name}</div><div class="address-line">{address_line}</div><div class="address-cps">{address_cps} &nbsp &nbsp {phone_number}</div><div class="address-country">{country}</div></div>',
             flex: 0.5
         },{
             xtype: 'radiofield',
             name : 'address',
             value: '',
             itemId: 'addressRadioField',
-            flex: 0.1
+            flex: 0.1,
+            cls: 'address-radiofield'
         },{
         	xtype: 'container',
         	layout:{
@@ -27,25 +29,50 @@ Ext.define('TheOpenDoor.view.phone.order.AddressItem',{
         		align: 'center'
         	},
         	flex: 0.2,
+            cls: 'address-deledit-button-container',
         	items:[{
         		xtype: 'button',
         		ui: 'plain',
 	        	flex: 1,
 	        	text: 'Edit',
 	        	itemId: 'editButton',
-	        	cls: ''
+	        	cls: 'address-edit-button',
+                listeners:[{
+                    element: 'element',
+                    event: 'tap',
+                    fn: function(ElementObj, e) {
+                        debugger;
+                        var me = this, addressOrderServiceView = null;
+
+                        addressView = me.getParent().up('#addressView').down('#addressItemCnt');
+                        addressView.setBtnRef('edit');
+                        console.log(e);
+                    }
+                }]
         	},{
 	        	xtype: 'button',
 	        	ui: 'plain',
 	        	flex: 1,
 	        	text: 'Delete',
 	        	itemId: 'deleteButton',
-	        	cls: ''
+	        	cls: 'address-delete-button',
+                listeners:[{
+                    element: 'element',
+                    event: 'tap',
+                    fn: function(ElementObj, e) {
+                        debugger;
+                        var me = this, addressOrderServiceView = null;
+                        addressOrderServiceView = me.getParent().up('#addressServiceOrder');
+                        console.log(e);
+                    }
+                }]
         	}]
 	    }]
     },
     updateRecord: function(record) {
+        debugger;
         var me = this;
+        me.setIndex(record._tmpIndex);
         if(record !== null){
             me.down('#addressItem').setData({name: record.get('name'), address_line: record.get('address_line'),address_cps: record.get('address_cps'),country: record.get('country')});
         }

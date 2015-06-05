@@ -10,6 +10,7 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         refs:{
             addressOrderService: 'AddressOrderService',
             baseNavigationView: 'BaseNavigationView',
+            addressView: 'AddressView',
             addressBackButton: 'AddressOrderService [itemId=headerPanel] button[itemId=backButtonId]',
         },
 
@@ -20,9 +21,14 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
             addressBackButton:{
                 tap: 'handleAddressBackButtonTap'
             },
+            addressView:{
+                itemtap:'addressView1'
+            }
         },
 	},
-
+    addressView1:function(){
+        debugger;
+    },
     applyAddressBO: function(boName) {
         return Ext.create(boName, this);
     },

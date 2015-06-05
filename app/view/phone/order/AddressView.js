@@ -5,7 +5,7 @@ Ext.define('TheOpenDoor.view.phone.order.AddressView', {
     	itemId: 'addressView',
     	defaultType: 'AddressItem',
         store: 'AddressGetStore',
-        scrollable    : null,
+        scrollable    : true,
         useComponents : true,
     }
     // config: {

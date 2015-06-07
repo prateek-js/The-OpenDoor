@@ -34,7 +34,8 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 			addAddress: BaseUrl.baseUrl+'users'+this.user_Id+'address',
 			getServices: BaseUrl.baseUrl+'services',
 			getSlots: BaseUrl.baseUrl+'services'+this.serviceIdSelected+'get_slots',
-			getAddress: BaseUrl.baseUrl+'users'+this.user_Id+'address'
+			getAddress: BaseUrl.baseUrl+'users'+this.user_Id+'address',
+			updateAddress: BaseUrl.baseUrl+'users'+this.user_Id+'update_address',
 		},
 		/**
 		 * not allowed to access _developmentUrl property
@@ -45,7 +46,8 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 			addAddress: 'stubs/dashboard.json',
 			getServices: 'stubs/services.json',
 			getSlots: 'stubs/getSlots.json',
-			getAddress: 'stubs/getAddress.json'
+			getAddress: 'stubs/getAddress.json',
+			updateAddress : 'stubs/getAddress.json'
 		}
 
 	},

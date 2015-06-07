@@ -10,12 +10,24 @@ Ext.define('TheOpenDoor.view.phone.order.AddEditAddress', {
         },
         cls: 'dashboard-view',
         items:[{
+            xtype: 'headerPanel',
+            width: '100%',
+            itemId: 'headerPanel',
+            flex: 1
+        },{
+            xtype: 'image',
+            src: 'resources/images/bulletpoint.jpg',
+            docked: 'top',
+            itemId : 'centerLogo',
+            cls: 'center-logo-image',
+        },{
             xtype: 'container',
             layout : {
                 type : 'vbox',
                 align : 'center',
                 pack : 'center'
             },
+            flex: 9,
             cls: 'dashboard-view-container',
             items:[{
                 xtype: 'textfield',
@@ -43,18 +55,30 @@ Ext.define('TheOpenDoor.view.phone.order.AddEditAddress', {
                 placeHolder: 'Pin',
                 cls: 'other-textfield'
             },{
-                xtype: 'button',
-                ui: 'plain',
-                text: 'Save',
-                itemId: 'saveButton',
-                cls: 'save-button'
-            },{
                 xtype: 'numberfield',
                 name: 'mobNumber',
                 cls: 'mobile-number-field',
                 minValue: 10,
                 maxValue: 15,
                 itemId : 'mobileNumberField'
+            },{
+                xtype: 'container',
+                layout: 'hbox',
+                cls: 'save-cancel-btn-container',
+                items:[{
+                    xtype: 'button',
+                    ui: 'plain',
+                    text: 'Save',
+                    itemId: 'saveButtonId',
+                    cls: 'save-button'
+                },{
+                    xtype: 'button',
+                    ui: 'plain',
+                    text: 'Cancel',
+                    itemId: 'cancelButtonId',
+                    cls: 'save-button'
+                }]
+                
             }]
         }]           
     }

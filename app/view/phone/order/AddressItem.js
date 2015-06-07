@@ -1,6 +1,5 @@
 Ext.define('TheOpenDoor.view.phone.order.AddressItem',{
 	extend: 'Ext.dataview.component.DataItem',
-    //requires: [],
     config: {
         layout: {
             type: 'vbox'
@@ -20,7 +19,14 @@ Ext.define('TheOpenDoor.view.phone.order.AddressItem',{
             value: '',
             itemId: 'addressRadioField',
             flex: 0.1,
-            cls: 'address-radiofield'
+            cls: 'address-radiofield',
+            listeners:{
+                'change': function(radio) {
+                    var me = this;
+                    addressView = me.getParent().up('#addressView').down('#addressItemCnt');
+                    addressView.setBtnRef('radio');
+                }
+            }
         },{
         	xtype: 'container',
         	layout:{
@@ -41,12 +47,9 @@ Ext.define('TheOpenDoor.view.phone.order.AddressItem',{
                     element: 'element',
                     event: 'tap',
                     fn: function(ElementObj, e) {
-                        debugger;
                         var me = this, addressOrderServiceView = null;
-
                         addressView = me.getParent().up('#addressView').down('#addressItemCnt');
                         addressView.setBtnRef('edit');
-                        console.log(e);
                     }
                 }]
         	},{
@@ -60,19 +63,16 @@ Ext.define('TheOpenDoor.view.phone.order.AddressItem',{
                     element: 'element',
                     event: 'tap',
                     fn: function(ElementObj, e) {
-                        debugger;
                         var me = this, addressOrderServiceView = null;
-                        addressOrderServiceView = me.getParent().up('#addressServiceOrder');
-                        console.log(e);
+                        addressView = me.getParent().up('#addressView').down('#addressItemCnt');
+                        addressView.setBtnRef('edit');                        
                     }
                 }]
         	}]
 	    }]
     },
     updateRecord: function(record) {
-        debugger;
         var me = this;
-        me.setIndex(record._tmpIndex);
         if(record !== null){
             me.down('#addressItem').setData({name: record.get('name'), address_line: record.get('address_line'),address_cps: record.get('address_cps'),country: record.get('country')});
         }

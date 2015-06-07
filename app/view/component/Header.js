@@ -8,6 +8,7 @@ Ext.define('TheOpenDoor.view.component.Header',{
         useBackButton : false,
         useDoneButton : false,
         useNextButton : false,
+        useConfirmButton : false,
         backButtonLabel:'',
         backButtonCls:'',
         ui: 'plain',
@@ -62,6 +63,15 @@ Ext.define('TheOpenDoor.view.component.Header',{
                 iconAlign: 'right',
                 align : 'right',
                 cls: 'done-button-text',
+                hidden : true           
+            },{
+                xtype: 'button',
+                ui: 'plain',
+                text: 'Confirm',
+                itemId : 'confirmButtonId',
+                iconCls: 'header-done',
+                align : 'right',
+                cls: 'confirm-button-text',
                 hidden : true           
             },{
                 xtype: 'button',
@@ -149,6 +159,7 @@ Ext.define('TheOpenDoor.view.component.Header',{
         useLeftImage = me.getUseLeftImage();
         useDoneButton = me.getUseDoneButton();
         useNextButton = me.getUseNextButton();
+        useConfirmButton = me.getUseConfirmButton();
         if (useBackButton) {
             this.down('#backButtonId').show();
         }
@@ -163,6 +174,9 @@ Ext.define('TheOpenDoor.view.component.Header',{
         }
         if(useNextButton) {
             this.down('#nextButtonId').show();
+        }
+        if(useConfirmButton) {
+            this.down('#confirmButtonId').show();
         }
     }
 });

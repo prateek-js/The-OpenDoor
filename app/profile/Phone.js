@@ -21,7 +21,8 @@ Ext.define('TheOpenDoor.profile.Phone', {
             'order.AddressView',
             'order.AddressItem',
             'order.AddressOrderService',
-            'order.AddEditAddress'
+            'order.AddEditAddress',
+            'order.FinalOrderPreview'
         ]
     },
 	isActive: function() {
@@ -48,6 +49,7 @@ Ext.define('TheOpenDoor.profile.Phone', {
 		TheOpenDoor.view.phone.order.AddressItem.addXtype('AddressItem');
 		TheOpenDoor.view.phone.order.AddressOrderService.addXtype('AddressOrderService');
 		TheOpenDoor.view.phone.order.AddEditAddress.addXtype('AddEditAddress');
+		TheOpenDoor.view.phone.order.FinalOrderPreview.addXtype('FinalOrderPreview');
 		if(localStorage.loggedInFlag == "true"){
 			Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.order.OrderPageView'));
 		}

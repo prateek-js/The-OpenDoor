@@ -6,9 +6,9 @@ Ext.define('TheOpenDoor.view.phone.order.AddEditAddress', {
         layout : {
             type : 'vbox',
             align : 'center',
-            pack : 'start'
+            pack : 'stretch'
         },
-        cls: 'dashboard-view',
+        cls: 'add-edit-address-view',
         items:[{
             xtype: 'headerPanel',
             width: '100%',
@@ -24,12 +24,15 @@ Ext.define('TheOpenDoor.view.phone.order.AddEditAddress', {
             xtype: 'container',
             layout : {
                 type : 'vbox',
-                align : 'center',
-                pack : 'center'
             },
             flex: 9,
             cls: 'dashboard-view-container',
             items:[{
+                xtype: 'label',
+                itemId : 'addEditAddressLabel',
+                cls: 'add-edit-address-label',
+                html: ''
+            },{
                 xtype: 'textfield',
                 itemId: 'nameField',
                 placeHolder: 'Name',
@@ -58,6 +61,7 @@ Ext.define('TheOpenDoor.view.phone.order.AddEditAddress', {
                 xtype: 'numberfield',
                 name: 'mobNumber',
                 cls: 'mobile-number-field',
+                placeHolder: 'Phone Number',
                 minValue: 10,
                 maxValue: 15,
                 itemId : 'mobileNumberField'
@@ -70,13 +74,15 @@ Ext.define('TheOpenDoor.view.phone.order.AddEditAddress', {
                     ui: 'plain',
                     text: 'Save',
                     itemId: 'saveButtonId',
-                    cls: 'save-button'
+                    flex: 1,
+                    cls: 'save-address-button'
                 },{
                     xtype: 'button',
                     ui: 'plain',
                     text: 'Cancel',
                     itemId: 'cancelButtonId',
-                    cls: 'save-button'
+                    flex: 1,
+                    cls: 'cancel-address-button'
                 }]
                 
             }]

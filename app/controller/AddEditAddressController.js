@@ -26,7 +26,8 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
             landmarkField : 'AddEditAddress [itemId=landmarkField]',
             pinField : 'AddEditAddress [itemId=pinField]',
             mobileNumberField : 'AddEditAddress [itemId=mobileNumberField]',
-            addNewAddressBtn: 'AddressOrderService [itemId=addNewAddressBtn]'
+            addNewAddressBtn: 'AddressOrderService [itemId=addNewAddressBtn]',
+            addEditAddressLabel: 'AddEditAddress [itemId=addEditAddressLabel]'
         },
 
         control:{
@@ -65,7 +66,6 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
     },
 
     handleAddressOrderServiceInit: function(){
-        debugger;
         var me = this;
         successCb = this.handleGetAddressSucess,
         failureCb = this.handleGetAddressFailure;
@@ -86,7 +86,8 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         if(btnRef=="edit"){
             //open edit and add address field
             addressToEdit = dataitem.getRecord().getData();
-            this.getBaseNavigationView().pushtoNavigationView('AddEditAddress');          
+            this.getBaseNavigationView().pushtoNavigationView('AddEditAddress');
+            this.getAddEditAddressLabel().setHtml("Edit Existing Address");          
         }
         else if(btnRef=="delete"){
             //send data to server and refresh the view
@@ -132,6 +133,7 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         btnRef = null;
         clickedAddressId = null;
         this.getBaseNavigationView().pushtoNavigationView('AddEditAddress');
+        this.getAddEditAddressLabel().setHtml("Add New Address");
     },
     handleAddressEditSaveButtonTap: function(){
             var newdAddressData = {};
@@ -184,7 +186,6 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
 
     handleAddEditAddressSuccess: function(responseObj, opts){
         try{
-            debugger;
             var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
             if (Ext.isObject(decodedObj)) {
                 this.handleAddressOrderServiceInit();

@@ -21,6 +21,7 @@
 			width: 90%;
 			height: 80%;
 			margin: 0 5%;
+			border-top: 1px solid #ccc;
 		}
 	}
 }
@@ -70,7 +71,7 @@
 	.address-deledit-button-container{
 		.address-edit-button{
 			border: 1px solid #cccccc;
-			margin-right: 20%;
+			margin-right: 15%;
 		}
 		.address-delete-button{
 			border: 1px solid #cccccc;
@@ -89,4 +90,40 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	color: transparent;
+}
+
+.add-edit-address-view{
+	.dashboard-view-container{
+		width: 80%;
+		margin: 10%;
+		.add-edit-address-label{
+			text-align: center;
+			font-size: 1rem;
+			margin-bottom: 1rem;
+		}
+		.other-textfield{
+			width: 90%;
+			margin: 2% 5%;
+		}
+		.address-textfield{
+			width: 90%;
+			margin: 2% 5%;
+		}
+		.mobile-number-field{
+			width: 90%;
+			margin: 2% 5%;
+		}
+		.save-cancel-btn-container{
+			width: 90%;
+			margin: 2% 5%;
+			.save-address-button{
+				border: 1px solid #cccccc;
+				margin-right: 15%;
+			}
+			.cancel-address-button{
+				border: 1px solid #cccccc;
+				margin-right: 0.2rem;
+			}
+		}
+	}
 }

@@ -1,5 +1,4 @@
 {
-	"services":[{
 		"service_id": 1,
 		"name": "Maid",
 		"image": "resources/images/download.jpeg",
@@ -33,5 +32,4 @@
 			"image": "resources/images/download.jpeg",
 			"price_per_hour": 800
 
-	}]
-}
+	}

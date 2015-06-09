@@ -1,8 +1,8 @@
 Ext.define('TheOpenDoor.controller.FinalOrderPreviewController',{
 	extend : 'TheOpenDoor.controller.BaseController',
-	requires: [
-        ''
-    ],
+	// requires: [
+ //        ''
+ //    ],
 	config : {
 		finalOrderObj: '',
 		refs: {
@@ -43,13 +43,16 @@ Ext.define('TheOpenDoor.controller.FinalOrderPreviewController',{
 		this.getSelectedServiceLabel().setHtml(recordServiceText);
 		this.getSelectedAddressLabel().setHtml(recordAddressText);
 		this.getSelectedTimeLabel().setHtml(timeSlotText);
-		finalOrderObj.service_id = serviceSelected;
-		finalOrderObj.address_id = addressSelected;
-		finalOrderObj.start_time = timeSlotSelected;
+		var finalOrder = {};
+		finalOrder.service_id = serviceSelected;
+		finalOrder.address_id = addressSelected;
+		finalOrder.start_time = timeSlotSelected;
+		finalOrderObj = finalOrder;
 	},
 	handleOrderPlaceBtnTap: function(){
+		showSpinner();
 		Ext.Ajax.request({
-            url: 'stubs/submitOrder.json',
+            url: UrlHelper.getServerUrl().submitOrder,
             method: 'POST',          
             headers: {'Content-Type': 'text/json'},
             waitTitle: 'Connecting',
@@ -63,5 +66,26 @@ Ext.define('TheOpenDoor.controller.FinalOrderPreviewController',{
             success: this.handleOrderPlaceSuccess,                                    
             failure: this.handleOrderPlaceFailure        
         });
+	},
+	handleOrderPlaceSuccess: function(responseObj, opts){
+		 try{
+            var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
+            if (Ext.isObject(decodedObj)) {
+                alert("success");            
+            }else
+            {
+                var errorText = localeString.errorMsg_invalid_userId_password;
+                this.invokeCb (this.failureCb, [null, false, false, errorText]);
+            }
+        }catch(e){
+            var errorText = localeString.errorMsg_defaultFailure;
+            hideSpinner();
+            //Display Error Message
+            showErrorDialog(false, false, errorText);
+        }
+		hideSpinner();
+	},
+	handleOrderPlaceFailure: function(errObj, noInternetConnection, errMsg){
+		hideSpinner();
 	}
 });

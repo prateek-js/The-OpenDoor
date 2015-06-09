@@ -39,11 +39,11 @@ Ext.define('TheOpenDoor.businessObject.OrderServicesBO', {
     },
 
     onGetServiceSuccess: function(responseObj, opts){
-    	try{
+        try{
         	var orderServiceStore = Ext.getStore('OrderServiceStore');
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
-            if (Ext.isObject(decodedObj) && decodedObj.services != null) {
-            	orderServiceStore.addToStore(decodedObj.services);
+            if (decodedObj) {
+            	orderServiceStore.addToStore(decodedObj);
                 orderServiceStore.load();  
                     	
     	    }else

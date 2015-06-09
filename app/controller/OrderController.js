@@ -44,7 +44,7 @@ Ext.define('TheOpenDoor.controller.OrderController',{
 
     handleDataViewTap: function(list, index, target, record, e){
         var indexTapped = index;
-        serviceIdSelected = indexTapped + 1;
+        serviceIdSelected = record.data.service_id;
         var slideNavigator = this.getSlideNavigator();    
         if(slideNavigator){
             Ext.Viewport.remove(slideNavigator, true);

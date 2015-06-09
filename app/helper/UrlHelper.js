@@ -33,9 +33,10 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 			createUser: BaseUrl.baseUrl+'users',
 			addAddress: BaseUrl.baseUrl+'users'+this.user_Id+'address',
 			getServices: BaseUrl.baseUrl+'services',
-			getSlots: BaseUrl.baseUrl+'services'+this.serviceIdSelected+'get_slots',
+			getSlots: BaseUrl.baseUrl+'services/:'+this.serviceIdSelected+'/get_slots',
 			getAddress: BaseUrl.baseUrl+'users'+this.user_Id+'address',
 			updateAddress: BaseUrl.baseUrl+'users'+this.user_Id+'update_address',
+			submitOrder: BaseUrl.baseUrl+'orders'
 		},
 		/**
 		 * not allowed to access _developmentUrl property
@@ -44,10 +45,14 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 		_developmentUrl : {
 			createUser: 'stubs/createUser.json',
 			addAddress: 'stubs/dashboard.json',
-			getServices: 'stubs/services.json',
-			getSlots: 'stubs/getSlots.json',
-			getAddress: 'stubs/getAddress.json',
-			updateAddress : 'stubs/getAddress.json'
+			//getServices: 'stubs/services.json',
+			//getSlots: 'stubs/getSlots.json',
+			getServices: BaseUrl.baseUrl+'services',
+			getSlots: BaseUrl.baseUrl+'services/:'+this.serviceIdSelected+'/get_slots',
+			//getAddress: 'stubs/getAddress.json',
+			getAddress: BaseUrl.baseUrl+'users/:'+this.user_Id+'/address',
+			updateAddress : 'stubs/getAddress.json',
+			submitOrder: 'stubs/orderConfirmation.json'
 		}
 
 	},

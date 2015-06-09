@@ -12,7 +12,7 @@ var userName = '';
 var userEmail = '';
 var userGender = '';
 var isloggedIn = '';
-var user_Id = 'abc';
+var user_Id = '1';
 var serviceIdSelected = '';
 var orderStartTime = '';
 /**

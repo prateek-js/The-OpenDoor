@@ -107,7 +107,7 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         }
         else{
             //tell user to select the address
-           alert("id is selected" +this.addressIdSelected);
+           this.getBaseNavigationView().pushtoNavigationView('FinalOrderPreview');
         }
     },
     handleAddEditAddressInit: function(){

@@ -14,6 +14,7 @@ var userGender = '';
 var isloggedIn = '';
 var user_Id = 'abc';
 var serviceIdSelected = '';
+var orderStartTime = '';
 /**
     * @method handleAuthResult
     * @param {authResult}

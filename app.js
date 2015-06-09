@@ -30,7 +30,8 @@ Ext.application({
         'DashboardController',
         'OrderController',
         'OrderStartController',
-        'AddEditAddressController'
+        'AddEditAddressController',
+        'FinalOrderPreviewController'
     ],
     models:[
         'DashboardModel',

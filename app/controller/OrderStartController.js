@@ -64,6 +64,7 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
     showTimeDateLabel: function(){
         var dateSelected = convertDateToTimestamp(this.getDatePickerId().getValue());
         var timeSelected = convertTimeToTimestamp(this.getTimePickerId().getValue());
+        orderStartTime = this.getDatePickerId().getValue()+ " " +this.getTimePickerId().getValue();
         var labelText = "Your Selected Order Date is " +dateSelected+ " at " +timeSelected;
         this.getDateTimeSelectedLabel().setHtml(labelText);
     }

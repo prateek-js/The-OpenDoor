@@ -73,9 +73,9 @@ Ext.define('TheOpenDoor.view.phone.order.AddressItem',{
     },
     updateRecord: function(record) {
         var me = this;
-        if(record !== null){
-            me.down('#addressItem').setData({name: record.get('name'), address_line: record.get('address_line'),address_cps: record.get('address_cps'),country: record.get('country')});
-        }
+        if(!record)
+            return;
+        me.down('#addressItem').setData({name: record.get('name'), address_line: record.get('address_line'),address_cps: record.get('address_cps'),country: record.get('country')});
         me.callParent(arguments);
     }
 });

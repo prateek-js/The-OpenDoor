@@ -40,7 +40,14 @@ Ext.define('TheOpenDoor.view.phone.BaseNavigationView',{
         var preView = this.getViewXType(items[0]);
         var count = items.length;
         if(1 == count) {
-        	Ext.Viewport.setActiveItem('SlideNavigator');        	
+        	Ext.getStore('OrderServiceStore').removeAll(true);
+	       	var baseController = TheOpenDoor.app.getController('TheOpenDoor.controller.BaseController');
+	        baseController.addToViewPort({
+	            xtype : 'SlideNavigator'
+	        });
+	        baseController.removeXType('MyNavView');
+        
+        	
         } else {
         	this.pop();
         }        

@@ -39,13 +39,11 @@ Ext.define('TheOpenDoor.businessObject.GetAddressBO', {
     },
 
     onGetAddressSuccess: function(responseObj, opts){
-        debugger;
     	try{
         	var addressGetStore = Ext.getStore('AddressGetStore');
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
             if (Ext.isObject(decodedObj)&& decodedObj.addresses != null) {
-            	addressGetStore.addToStore(decodedObj.addresses);  
-                    	
+                addressGetStore.addToStore(decodedObj.addresses);  	
     	    }else
             {
             	var errorText = localeString.errorMsg_invalid_userId_password;
@@ -60,7 +58,6 @@ Ext.define('TheOpenDoor.businessObject.GetAddressBO', {
     },
 
     onGetAddressFailure: function(responseObj, opts){
-        debugger;
     	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ? 
         Ext.decode (responseObj.responseText) : null;
     	errorHandled = this.genericErrorCheck(responseObj, false);

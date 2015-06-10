@@ -3,12 +3,14 @@ Ext.define('TheOpenDoor.store.AddressGetStore', {
 	requires: ['TheOpenDoor.model.AddressGetModel'],
 	config:{
     	model: "TheOpenDoor.model.AddressGetModel",
-    	storeId : 'AddressGetStore'
+    	storeId : 'AddressGetStore',
+        autoSync: true,
+        autoLoad: true,
 	},
     
     load:function()
     {
-    	//console.log("loginStore Loaded");
+    	
     },
         
     addToStore : function(addressData){

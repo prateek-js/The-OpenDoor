@@ -91,6 +91,7 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         }
         else if(btnRef=="delete"){
             //send data to server and refresh the view
+            this.handleAddressDelete(clickedAddressId);
         }
         else if(btnRef=="radio"){
             //keep the address id of clicked one
@@ -109,6 +110,9 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
             //tell user to select the address
            this.getBaseNavigationView().pushtoNavigationView('FinalOrderPreview');
         }
+    },
+    handleAddressDelete: function(clickedAddressId){
+        alert("address deleted");
     },
     handleAddEditAddressInit: function(){
         if(btnRef == "edit"){
@@ -136,6 +140,7 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         this.getAddEditAddressLabel().setHtml("Add New Address");
     },
     handleAddressEditSaveButtonTap: function(){
+        showSpinner();
             var newdAddressData = {};
             if(btnRef == "edit"){
                 newdAddressData.id = clickedAddressId;
@@ -143,16 +148,17 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
             else{
                 newdAddressData.id = null;
             }
-            newdAddressData.newName = this.getNameField().getValue();
-            newdAddressData.newLine1 = this.getAddresslineOne().getValue();
-            newdAddressData.newLine2 = this.getAddresslineTwo().getValue();
-            newdAddressData.newLandmark = this.getLandmarkField().getValue();
-            newdAddressData.newPin = this.getPinField().getValue();
-            newdAddressData.newNumber = this.getMobileNumberField().getValue();
-            newdAddressData.city = "Bangalore"
-            newdAddressData.state = "Karnataka";
-            newdAddressData.country = "India";
-            console.log(newdAddressData);
+            var newdAddressDataFields = {};
+            newdAddressDataFields.name = this.getNameField().getValue();
+            newdAddressDataFields.line1 = this.getAddresslineOne().getValue();
+            newdAddressDataFields.line2 = this.getAddresslineTwo().getValue();
+            newdAddressDataFields.landmark = this.getLandmarkField().getValue();
+            newdAddressDataFields.pincode = this.getPinField().getValue();
+            newdAddressDataFields.phone_number = this.getMobileNumberField().getValue();
+            newdAddressDataFields.city = "Bangalore"
+            newdAddressDataFields.state = "Karnataka";
+            newdAddressDataFields.county = "India";
+            newdAddressData.address = newdAddressDataFields;
             this.getBaseNavigationView().onNavBack();
 
             // var me = this;
@@ -161,22 +167,14 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
             // this.getAddressBO().updateAddress(newdAddressData,successCb, failureCb);
 
             Ext.Ajax.request({
-            url: 'stubs/getAddress.json',
+            url: UrlHelper.getServerUrl().updateAddress,
             method: 'PUT',          
             headers: {'Content-Type': 'text/json'},
             waitTitle: 'Connecting',
             waitMsg: 'Sending data...',                                     
             params: {
-                "id": newdAddressData.id,
-                "line1": newdAddressData.line1,
-                "line2": newdAddressData.line2,
-                "landmark": newdAddressData.landmark,
-                "city": newdAddressData.city,
-                "state": newdAddressData.state,
-                "country": newdAddressData.country,
-                "phone_number": newdAddressData.phone_number,
-                "pincode": newdAddressData.pincode,
-                "name": newdAddressData.name
+                "address_id": newdAddressData.id,
+                "address": newdAddressData.address
             },
             scope:this,
             success: this.handleAddEditAddressSuccess,                                    
@@ -188,9 +186,9 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         try{
             var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
             if (Ext.isObject(decodedObj)) {
-                this.handleAddressOrderServiceInit();
-                hideSpinner();
-                        
+              //  this.handleAddressOrderServiceInit(); 
+              this.getAddressView().refresh();
+
             }else
             {
                 var errorText = localeString.errorMsg_invalid_userId_password;
@@ -202,6 +200,7 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
             //Display Error Message
             showErrorDialog(false, false, errorText);
         }
+        hideSpinner();
     },
     handleAddEditAddressFailure: function(errObj, noInternetConnection, errMsg){
         hideSpinner();

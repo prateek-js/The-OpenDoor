@@ -42,7 +42,6 @@ Ext.define('TheOpenDoor.businessObject.DateTimeBO', {
     },
 
     onDateTimeSuccess: function(responseObj, opts){
-    	debugger;
         try{
         	var getSlotsStore = Ext.getStore('GetSlotsStore');
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;

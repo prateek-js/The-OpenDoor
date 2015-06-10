@@ -186,7 +186,6 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         try{
             var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
             if (Ext.isObject(decodedObj)) {
-              //  this.handleAddressOrderServiceInit(); 
               this.getAddressView().refresh();
 
             }else

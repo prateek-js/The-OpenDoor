@@ -1,7 +1,4 @@
 {
-	"users":{
-		"email_id": "email@xyz.com",
-		"gender": "female",
-		"displayName": "naam"
-	}	
+	"user_id":"123",
+	"new_user":true
 }

@@ -33,7 +33,7 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 			createUser: BaseUrl.baseUrl+'users',
 			addAddress: BaseUrl.baseUrl+'users'+this.user_Id+'address',
 			getServices: BaseUrl.baseUrl+'services',
-			getSlots: BaseUrl.baseUrl+'services/:'+serviceIdSelected+'/get_slots',
+			getSlots: BaseUrl.baseUrl+'services/:'+this.serviceIdSelected+'/get_slots',
 			getAddress: BaseUrl.baseUrl+'users'+this.user_Id+'address',
 			updateAddress: BaseUrl.baseUrl+'users'+this.user_Id+'update_address',
 			submitOrder: BaseUrl.baseUrl+'orders'
@@ -43,7 +43,8 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 		 * instead use the above serverUrl property 
 		 */
 		_developmentUrl : {
-			createUser: 'stubs/createUser.json',
+			//createUser: 'stubs/createUser.json',
+			createUser: BaseUrl.baseUrl+'users',
 			addAddress: 'stubs/dashboard.json',
 			//getServices: 'stubs/services.json',
 			getSlots: 'stubs/getSlots.json',

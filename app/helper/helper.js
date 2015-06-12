@@ -15,6 +15,7 @@ var isloggedIn = '';
 var user_Id = '1';
 var serviceIdSelected = '';
 var orderStartTime = '';
+var userProfile = '';
 /**
     * @method handleAuthResult
     * @param {authResult}

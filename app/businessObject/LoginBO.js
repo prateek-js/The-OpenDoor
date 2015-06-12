@@ -11,7 +11,7 @@ Ext.define('TheOpenDoor.businessObject.LoginBO', {
 	inputDetails: null,
 	authResult: null,
 	inputDetails: null,
-
+    userFbEmail: null,
 	constructor: function (cObj) {
 		if (Ext.isDefined (cObj)) {
 			this.controllerObj = cObj;
@@ -31,7 +31,17 @@ Ext.define('TheOpenDoor.businessObject.LoginBO', {
         
         this.doLoginAjaxRequest();
 	},
-
+    doUserFbLogin: function(userFbEmail, successCb, failureCb){
+        this.userFbEmail = userFbEmail;
+        this.successCb = successCb;
+        this.failureCb = failureCb;
+        
+        this.inputDetails = {
+                "emailId": userFbEmail.email,
+        };
+        
+        this.doLoginAjaxRequest();
+    },
 	doLoginAjaxRequest: function () {
     	/* Call Login API */
         this.doSendAjax({
@@ -51,7 +61,7 @@ Ext.define('TheOpenDoor.businessObject.LoginBO', {
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
             if (Ext.isObject(decodedObj)) {
             	createUserStore.addToStore(decodedObj);
-                loginStore.load();      	
+                TheOpenDoor.app.getController('LoginController').handleSignInSucess();
     	    }else
             {
             	var errorText = localeString.errorMsg_invalid_userId_password;

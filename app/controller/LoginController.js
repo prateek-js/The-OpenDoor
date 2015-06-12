@@ -5,8 +5,8 @@ Ext.define('TheOpenDoor.controller.LoginController',{
      'TheOpenDoor.businessObject.LoginBO'
     ],
 	config : {
-        userProfile: '',
         loginBO : 'TheOpenDoor.businessObject.LoginBO',
+        userData: '',
         refs:{
             loginView: 'LoginView',
             googleBtnContainer : 'LoginView container[itemId = googleBtnContainer]',
@@ -26,13 +26,38 @@ Ext.define('TheOpenDoor.controller.LoginController',{
         return Ext.create(boName, this);
     },
 
-    handleSignInDataSend: function(authResult){
-        var me = this;
+    init: function(application) {
+        window.fbAsyncInit = function() {
+            FB.init({
+              appId      : 991073507583251,
+              xfbml      : true,
+              version    : 'v2.3'
+            });
+        };
+
+        (function(d, s, id){
+            var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "http://connect.facebook.net/en_US/all.js";
+            d.getElementsByTagName('head')[0].appendChild(js);
+        }(document));
+
+
+    },
+    handleSignInFbDataSend: function(userFbEmail){
+        showSpinner("Loading");
+        var me = this,
         successCb = this.handleSignInSucess,
         failureCb = this.handleSignInFailure;
-        this.getLoginBO().doUserLogin(authResult, successCb, failureCb);
+        this.getLoginBO().doUserFbLogin(userFbEmail, successCb, failureCb);
     },
-
+    handleSignInDataSend: function(authResult){
+        showSpinner("Loading");
+        var me = this,
+        successCb = this.handleSignInSucess,
+        failureCb = this.handleSignInFailure;
+        this.getLoginBO().doUserLogin(authResult,successCb, failureCb);
+    },
     handleSignInSucess: function(){
         var loginView = this.getLoginView();
         if(loginView){
@@ -48,7 +73,7 @@ Ext.define('TheOpenDoor.controller.LoginController',{
         hideSpinner();        
     },
     handleGoogleSignIn: function() {
-        showSpinner(localeString.loading);
+        showSpinner("Loading");
         window.plugins.googleplus.login(
             {
               'iOSApiKey': '370422909165-4sr8egh09qdm62av5sh2npmi3emb076i.apps.googleusercontent.com'
@@ -60,6 +85,16 @@ Ext.define('TheOpenDoor.controller.LoginController',{
                 console.log(obj1);
             }
         )
+    },
+    handleFacebookSignIn: function(){
+        window.facebookConnectPlugin.login(["email","public_profile"], function(userData){this.userData = userData;},function (error) { alert("" + error) });
+        window.facebookConnectPlugin.api("/me?fields=id,email", ["user_birthday"],this.fbsuccess,function (error) {alert("Failed: " + error);});
+    },
+    fbsuccess : function(result){
+        userProfile = result;
+        var userFbEmail = userProfile.email;
+        alert(userProfile);
+        TheOpenDoor.app.getController('LoginController').handleSignInFbDataSend(userFbEmail);
     },
     handleLogoutYes: function() {
         window.plugins.googleplus.logout(

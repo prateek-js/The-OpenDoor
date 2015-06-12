@@ -56,6 +56,7 @@ Ext.define("TheOpenDoor.view.component.TimePickerField", {
 				},
                 change: function (picker, values) {
 					timePicker.setValue(values.time);
+					Ext.Viewport.remove(picker);
                 }
             }
         });

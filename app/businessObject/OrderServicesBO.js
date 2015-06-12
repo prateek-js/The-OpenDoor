@@ -41,10 +41,10 @@ Ext.define('TheOpenDoor.businessObject.OrderServicesBO', {
     onGetServiceSuccess: function(responseObj, opts){
         try{
         	var orderServiceStore = Ext.getStore('OrderServiceStore');
+            orderServiceStore.removeAll();
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
             if (decodedObj) {
             	orderServiceStore.addToStore(decodedObj);
-                orderServiceStore.load();  
                     	
     	    }else
             {
@@ -57,6 +57,7 @@ Ext.define('TheOpenDoor.businessObject.OrderServicesBO', {
 			//Display Error Message
 			showErrorDialog(false, false, errorText);
 		}
+        hideSpinner();
     },
 
     onGetServiceFailure: function(responseObj, opts){

@@ -28,6 +28,7 @@ Ext.define('TheOpenDoor.controller.OrderController',{
         return Ext.create(boName, this);
     },
     handleOrderPageViewInit: function(){
+        showSpinner();
         var me = this;
         successCb = this.handleGetServicesSucess,
         failureCb = this.handleGetServicesFailure;

@@ -60,6 +60,7 @@ Ext.define("TheOpenDoor.view.component.DatePickerField", {
 					var timeArray=data.getData().start_times;
 					var timeStore=Ext.getStore('TimeStore');
 					timeStore.addToStore(timeArray);
+					Ext.Viewport.remove(picker);
                 }
             }
         });

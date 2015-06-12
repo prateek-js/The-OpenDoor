@@ -32,6 +32,10 @@
     <preference name="android-installLocation" value="auto" />
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
+    <gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.11.0">
+        <param name="APP_ID" value="991073507583251" />
+        <param name="APP_NAME" value="TheOpenDoor" />
+    </gap:plugin>
     <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.console" />
     <gap:plugin name="org.apache.cordova.contacts" />

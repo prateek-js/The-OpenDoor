@@ -8,7 +8,6 @@ Ext.define('TheOpenDoor.store.CreateUserStore', {
     
     load:function()
     {
-    	//console.log("loginStore Loaded");
     },
         
     addToStore : function(createUserData){

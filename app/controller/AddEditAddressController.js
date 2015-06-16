@@ -2,7 +2,8 @@
 Ext.define('TheOpenDoor.controller.AddEditAddressController',{
 	extend : 'TheOpenDoor.controller.BaseController',
 	requires: [
-        'TheOpenDoor.businessObject.GetAddressBO'
+        'TheOpenDoor.businessObject.GetAddressBO',
+        'TheOpenDoor.businessObject.AddEditAddressBO'
     ],
 	config : {
         addressIdSelected: '',

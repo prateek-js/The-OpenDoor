@@ -31,7 +31,8 @@ Ext.application({
         'OrderController',
         'OrderStartController',
         'AddEditAddressController',
-        'FinalOrderPreviewController'
+        'FinalOrderPreviewController',
+        'AllOrderController'
     ],
     models:[
         'DashboardModel',
@@ -40,7 +41,8 @@ Ext.application({
         'CreateUserModel',
         'GetSlotsModel',
         'StartTimesModel',
-        'AddressGetModel'
+        'AddressGetModel',
+        'GetAllOrderModel'
     ],
     stores:[
         'DashboardStore',
@@ -48,7 +50,8 @@ Ext.application({
         'CreateUserStore',
         'GetSlotsStore',
         'TimeStore',
-        'AddressGetStore'
+        'AddressGetStore',
+        'GetAllOrderStore'
     ],
     icon: {
         '57': 'resources/icons/Icon.png',

@@ -36,7 +36,8 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 			getSlots: BaseUrl.baseUrl+'services/:'+this.serviceIdSelected+'/get_slots',
 			getAddress: BaseUrl.baseUrl+'users'+this.user_Id+'address',
 			updateAddress: BaseUrl.baseUrl+'users'+this.user_Id+'update_address',
-			submitOrder: BaseUrl.baseUrl+'orders'
+			submitOrder: BaseUrl.baseUrl+'orders',
+			allOrder: BaseUrl.baseUrl+'orders?user_Id='
 		},
 		/**
 		 * not allowed to access _developmentUrl property
@@ -46,15 +47,17 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 			//createUser: 'stubs/createUser.json',
 			createUser: BaseUrl.baseUrl+'users',
 			addAddress: 'stubs/dashboard.json',
-			//getServices: 'stubs/services.json',
+			getServices: 'stubs/services.json',
 			getSlots: 'stubs/getSlots.json',
-			getServices: BaseUrl.baseUrl+'services',
+			//getServices: BaseUrl.baseUrl+'services',
 			//getSlots: BaseUrl.baseUrl+'services/:'+serviceIdSelected+'/get_slots',
 			getAddress: 'stubs/getAddress.json',
 			//getAddress: BaseUrl.baseUrl+'users/:'+this.user_Id+'/address',
 			//updateAddress : 'stubs/getAddress.json',
 			updateAddress: BaseUrl.baseUrl+'users/:'+this.user_Id+'/update_address',
-			submitOrder: 'stubs/orderConfirmation.json'
+			submitOrder: 'stubs/orderConfirmation.json',
+			allOrder: BaseUrl.baseUrl+'orders?user_Id=',
+			//allOrder: 'stubs/allOrder.json'
 		},
 		facebookAppId: '991073507583251',
 

@@ -50,7 +50,7 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 			//addAddress: BaseUrl.baseUrl+'users/'+this.user_Id+'/address',
 			//getServices: 'stubs/services.json',
 			getSlots: 'stubs/getSlots.json',
-			//getServices: BaseUrl.baseUrl+'services',
+			getServices: BaseUrl.baseUrl+'services',
 			//getSlots: BaseUrl.baseUrl+'services/:'+serviceIdSelected+'/get_slots',
 			getAddress: 'stubs/getAddress.json',
 			//getAddress: BaseUrl.baseUrl+'users/:'+this.user_Id+'/address',

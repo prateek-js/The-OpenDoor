@@ -202,3 +202,22 @@ function convertTimeToTimestamp(time){
     }
     return time.join (''); // return adjusted time or original string
 }
+
+/**
+ * Parse the lang query param from the URL
+ * @returns {Boolean/String}
+ */
+function getLangParamFromURL(){
+    // Check if the ?lang parameter is set in the URL
+    var paramkey = 'lang', paramsString = window.location.search.substr(1),
+        paramsArray = paramsString.split("&"),
+        i, valuefound = false;
+
+    for (i = 0; i < paramsArray.length; i++) {
+        var tmpArray = paramsArray[i].split("=");
+        if(tmpArray[0] && tmpArray[0] === paramkey){
+            valuefound = tmpArray[1];
+        }
+    }
+    return valuefound;
+}

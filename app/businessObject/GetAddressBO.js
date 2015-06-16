@@ -43,6 +43,7 @@ Ext.define('TheOpenDoor.businessObject.GetAddressBO', {
         	var addressGetStore = Ext.getStore('AddressGetStore');
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
             if (Ext.isObject(decodedObj)&& decodedObj.addresses != null) {
+                addressGetStore.removeAll();
                 addressGetStore.addToStore(decodedObj.addresses);  	
     	    }else
             {

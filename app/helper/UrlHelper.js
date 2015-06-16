@@ -31,7 +31,7 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 		 */
 		_productionUrl : {
 			createUser: BaseUrl.baseUrl+'users',
-			addAddress: BaseUrl.baseUrl+'users'+this.user_Id+'address',
+			addAddress: BaseUrl.baseUrl+'users/'+this.user_Id+'/address',
 			getServices: BaseUrl.baseUrl+'services',
 			getSlots: BaseUrl.baseUrl+'services/:'+this.serviceIdSelected+'/get_slots',
 			getAddress: BaseUrl.baseUrl+'users'+this.user_Id+'address',
@@ -47,7 +47,8 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 			//createUser: 'stubs/createUser.json',
 			createUser: BaseUrl.baseUrl+'users',
 			addAddress: 'stubs/dashboard.json',
-			getServices: 'stubs/services.json',
+			//addAddress: BaseUrl.baseUrl+'users/'+this.user_Id+'/address',
+			//getServices: 'stubs/services.json',
 			getSlots: 'stubs/getSlots.json',
 			//getServices: BaseUrl.baseUrl+'services',
 			//getSlots: BaseUrl.baseUrl+'services/:'+serviceIdSelected+'/get_slots',

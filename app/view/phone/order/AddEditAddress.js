@@ -59,11 +59,8 @@ Ext.define('TheOpenDoor.view.phone.order.AddEditAddress', {
                 cls: 'other-textfield'
             },{
                 xtype: 'numberfield',
-                name: 'mobNumber',
                 cls: 'mobile-number-field',
                 placeHolder: 'Phone Number',
-                minValue: 10,
-                maxValue: 15,
                 itemId : 'mobileNumberField'
             },{
                 xtype: 'container',

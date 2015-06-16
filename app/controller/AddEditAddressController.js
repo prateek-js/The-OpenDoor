@@ -141,14 +141,8 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         this.getAddEditAddressLabel().setHtml("Add New Address");
     },
     handleAddressEditSaveButtonTap: function(){
-        showSpinner();
             var newdAddressData = {};
-            if(btnRef == "edit"){
-                newdAddressData.id = clickedAddressId;
-            }
-            else{
-                newdAddressData.id = null;
-            }
+            
             var newdAddressDataFields = {};
             newdAddressDataFields.name = this.getNameField().getValue();
             newdAddressDataFields.line1 = this.getAddresslineOne().getValue();
@@ -158,52 +152,109 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
             newdAddressDataFields.phone_number = this.getMobileNumberField().getValue();
             newdAddressDataFields.city = "Bangalore"
             newdAddressDataFields.state = "Karnataka";
-            newdAddressDataFields.county = "India";
+            newdAddressDataFields.country = "India";
             newdAddressData.address = newdAddressDataFields;
-            this.getBaseNavigationView().onNavBack();
-
-            // var me = this;
-            // successCb = this.handleAddEditAddressSaveSucess,
-            // failureCb = this.handleAddEditAddressSaveFailure;
-            // this.getAddressBO().updateAddress(newdAddressData,successCb, failureCb);
-
-            Ext.Ajax.request({
-            url: UrlHelper.getServerUrl().updateAddress,
-            method: 'PUT',          
-            headers: {'Content-Type': 'text/json'},
-            waitTitle: 'Connecting',
-            waitMsg: 'Sending data...',                                     
-            params: {
-                "address_id": newdAddressData.id,
-                "address": newdAddressData.address
-            },
-            scope:this,
-            success: this.handleAddEditAddressSuccess,                                    
-            failure: this.handleAddEditAddressFailure        
-        });
-    },
-
-    handleAddEditAddressSuccess: function(responseObj, opts){
-        try{
-            var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
-            if (Ext.isObject(decodedObj)) {
-              this.getAddressView().refresh();
-
-            }else
-            {
-                var errorText = localeString.errorMsg_invalid_userId_password;
-                this.invokeCb (this.failureCb, [null, false, false, errorText]);
+            var validateErrMsg = '';
+        
+            if(Ext.isEmpty(newdAddressDataFields.name)){
+                validateErrMsg = "name empty";
+            }else if(Ext.isEmpty(newdAddressDataFields.line1)){
+                validateErrMsg = "line1 empty";
+            }else if(Ext.isEmpty(newdAddressDataFields.landmark)){
+                validateErrMsg = "landmark empty";
+            }else if(Ext.isEmpty(newdAddressDataFields.pincode)){
+                validateErrMsg = "pincode empty";
+            }else if(Ext.isEmpty(newdAddressDataFields.phone_number)){
+                validateErrMsg = "phone_number empty";
             }
-        }catch(e){
-            var errorText = localeString.errorMsg_defaultFailure;
-            hideSpinner();
-            //Display Error Message
-            showErrorDialog(false, false, errorText);
-        }
-        hideSpinner();
-    },
-    handleAddEditAddressFailure: function(errObj, noInternetConnection, errMsg){
-        hideSpinner();
-    }
-    
+            if(!Ext.isEmpty(validateErrMsg)){
+                Ext.Msg.show({
+                    title: '',
+                    message: validateErrMsg,
+                    buttons: Ext.MessageBox.OK,
+                    cls: ''
+                });
+            }else{
+                showSpinner();
+                if(btnRef == "edit"){
+                    newdAddressData.id = clickedAddressId;
+                    Ext.Ajax.request({
+                        url: UrlHelper.getServerUrl().updateAddress,
+                        method: 'PUT',          
+                        headers: {'Content-Type': 'text/json'},
+                        waitTitle: 'Connecting',
+                        waitMsg: 'Sending data...',                                     
+                        params: Ext.JSON.encode({
+                            "address_id": newdAddressData.id,
+                            "address": newdAddressData.address
+                        }),
+                        scope:this,
+                        success : function(responseObj) {
+                            try{
+                                var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
+                                if (Ext.isObject(decodedObj)) {
+                                    //this.handleAddressOrderServiceInit();
+                                    this.getAddressView().refresh();
+                                    this.getAddressBO().doGetAddress(successCb, failureCb);
+                                }else
+                                {
+                                    var errorText = localeString.errorMsg_invalid_userId_password;
+                                    this.invokeCb (this.failureCb, [null, false, false, errorText]);
+                                }
+                            }catch(e){
+                                var errorText = localeString.errorMsg_defaultFailure;
+                                hideSpinner();
+                                //Display Error Message
+                                showErrorDialog(false, false, errorText);
+                            }
+                            hideSpinner();
+                        },                                    
+                        failure : function(response) {
+                            var respObj = Ext.JSON.decode(response.responseText);
+                            Ext.Msg.alert("Error", respObj.status.statusMessage);
+                        }    
+                    });
+                }
+                else{
+                    newdAddressData.id = null;
+                    Ext.Ajax.request({
+                        url: UrlHelper.getServerUrl().addAddress,
+                        method: 'POST',          
+                        headers: {'Content-Type': 'text/json'},
+                        waitTitle: 'Connecting',
+                        waitMsg: 'Sending data...',                                     
+                        params: Ext.JSON.encode({
+                            "address": newdAddressData.address
+                        }),
+                        scope:this,
+                        success : function(responseObj) {
+                            try{
+                                var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
+                                if (Ext.isObject(decodedObj)) {
+                                    this.getAddressView().refresh();
+                                    //this.handleAddressOrderServiceInit();
+                                    this.getAddressBO().doGetAddress(successCb, failureCb);
+                                    
+                                }else
+                                {
+                                    var errorText = localeString.errorMsg_invalid_userId_password;
+                                    this.invokeCb (this.failureCb, [null, false, false, errorText]);
+                                }
+                            }catch(e){
+                                var errorText = localeString.errorMsg_defaultFailure;
+                                hideSpinner();
+                                //Display Error Message
+                                showErrorDialog(false, false, errorText);
+                            }
+                            hideSpinner();
+                        },                                      
+                        failure : function(response) {
+                            var respObj = Ext.JSON.decode(response.responseText);
+                            Ext.Msg.alert("Error", respObj.status.statusMessage);
+                        }                             
+                    });
+                }
+                this.getBaseNavigationView().onNavBack();
+            }           
+    }    
 });

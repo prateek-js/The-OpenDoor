@@ -9,7 +9,7 @@ Ext.define('TheOpenDoor.businessObject.DateTimeBO', {
 	successCb: null,
 	failureCb: null,
 	inputDetails: null,
-	authResult: null,
+	serviceId: null,
 	inputDetails: null,
 
 	constructor: function (cObj) {
@@ -18,7 +18,8 @@ Ext.define('TheOpenDoor.businessObject.DateTimeBO', {
 		}
 		return this;
 	},
-	doGetDateTime: function(successCb, failureCb){
+	doGetDateTime: function(serviceId,successCb, failureCb){
+        this.serviceId = serviceId;
         this.successCb = successCb;
         this.failureCb = failureCb;
         

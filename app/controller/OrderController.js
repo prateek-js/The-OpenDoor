@@ -6,6 +6,7 @@ Ext.define('TheOpenDoor.controller.OrderController',{
     ],
 	config : {
         orderServicesBO: 'TheOpenDoor.businessObject.OrderServicesBO',
+        serviceIdSelected: '',
         refs:{
             slideNavigator: 'SlideNavigator',
             dashboardView: 'DashboardView',
@@ -28,8 +29,8 @@ Ext.define('TheOpenDoor.controller.OrderController',{
         return Ext.create(boName, this);
     },
     handleOrderPageViewInit: function(){
-        showSpinner();
-        var me = this;
+        showSpinner("Loading");
+        var me = this,
         successCb = this.handleGetServicesSucess,
         failureCb = this.handleGetServicesFailure;
         this.getOrderServicesBO().doOrderServices(successCb, failureCb);
@@ -45,7 +46,7 @@ Ext.define('TheOpenDoor.controller.OrderController',{
 
     handleDataViewTap: function(list, index, target, record, e){
         var indexTapped = index;
-        serviceIdSelected = record.data.service_id;
+        this.getServiceIdSelected = record.data.service_id;
         var slideNavigator = this.getSlideNavigator();    
         if(slideNavigator){
             Ext.Viewport.remove(slideNavigator, true);

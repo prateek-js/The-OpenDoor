@@ -41,10 +41,11 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
         return Ext.create(boName, this);
     },
 	handledateTimeViewInit: function(){
-        var me = this;
+        var me = this,
         successCb = this.handleGetServicesSucess,
         failureCb = this.handleGetServicesFailure;
-        this.getDateTimeBO().doGetDateTime(successCb, failureCb);
+        var serviceId = TheOpenDoor.app.getController('TheOpenDoor.controller.OrderController').getServiceIdSelected;
+        this.getDateTimeBO().doGetDateTime(serviceId,successCb, failureCb);
 	},
 	handleDateTimeViewBackButtonTap: function(){
 		this.getBaseNavigationView().onNavBack();

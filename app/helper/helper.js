@@ -221,3 +221,25 @@ function getLangParamFromURL(){
     }
     return valuefound;
 }
+
+/**
+ * Input full date and time and will convert it to separate time and date entity
+  * and returns time
+*/
+function splitDateAndTimeRetTime(dateTime){
+    debugger;
+    var inp = dateTime
+    var contime = convertTimeToTimestamp(inp.slice(11,19));
+    return conTime;
+}
+
+/**
+ * Input full date and time and will convert it to separate time and date entity
+  * and returns time
+*/
+function splitDateAndTimeRetDate(dateTime){
+    debugger;
+    var inp = dateTime;
+    var conDate = convertDateToTimestamp(inp.slice(0,9));
+    return conDate;
+}

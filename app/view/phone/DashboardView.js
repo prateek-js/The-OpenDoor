@@ -27,6 +27,10 @@ Ext.define('TheOpenDoor.view.phone.DashboardView', {
             },
             cls: 'dashboard-view-container',
             items:[{
+                xtype: 'label',
+                cls: 'profile-details-label',
+                html: 'Please Fill/Verify Your Profile Details'
+            },{
                 xtype: 'textfield',
                 itemId: 'nameField',
                 placeHolder: 'Name',
@@ -34,12 +38,12 @@ Ext.define('TheOpenDoor.view.phone.DashboardView', {
             },{
                 xtype: 'emailfield',
                 name: 'email',
-                cls: 'email-field',
+                cls: 'other-textfield',
                 readOnly: true,
                 itemId: 'emailFieldId'                    
             },{
                 xtype: 'numberfield',
-                cls: 'mobile-number-field',
+                cls: 'other-textfield',
                 itemId : 'mobileNumberField'
             },{
                 xtype: 'button',

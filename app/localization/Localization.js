@@ -17,20 +17,9 @@ Ext.define('TheOpenDoor.localization.Localization', {
      */
     constructor: function() {
     	//get locale value from URL if available, else get the default one from AppSetting
-    	var urlLocale = getLangParamFromURL(), locale = '', localeObj = null;
-    	if(!urlLocale){
-    		locale = AppSetting.getAppLocaleLang();
-    	}else{
-    		locale = urlLocale;
-    	}
-
-        switch(locale){
-        	case 'en':
-        		localeObj = Ext.create('TheOpenDoor.localization.LocaleEnglish');
-        		break;
-        	default:
-        		localeObj = Ext.create('TheOpenDoor.localization.LocaleEnglish');
-        }
+    	var locale = '', localeObj = null;
+    	locale = AppSetting.getAppLocaleLang();
+        localeObj = Ext.create('TheOpenDoor.localization.LocaleEnglish');     
         return localeObj;        
     }
 });

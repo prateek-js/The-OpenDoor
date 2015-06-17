@@ -28,23 +28,23 @@ Ext.define('TheOpenDoor.businessObject.GetAllOrderBO', {
 	doGetAllOrderAjaxRequest: function () {
     	/* Call Login API */
         this.doSendAjax({
-            url: UrlHelper.getServerUrl().getServices,
+            url: UrlHelper.getServerUrl().allOrder,
             method:'GET',
 			disableCaching: false ,
             jsonData: this.inputDetails,
-            success: this.onGetServiceSuccess,
-            failure: this.onGetServiceFailure,
+            success: this.doGetAllOrderSuccess,
+            failure: this.doGetAllOrderFailure,
             scope: this
         });        
     },
 
     doGetAllOrderSuccess: function(responseObj, opts){
         try{
-        	var orderServiceStore = Ext.getStore('OrderServiceStore');
-            orderServiceStore.removeAll();
+        	var allOrderStore = Ext.getStore('GetAllOrderStore');
+            allOrderStore.removeAll();
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
             if (decodedObj) {
-            	orderServiceStore.addToStore(decodedObj);
+            	allOrderStore.addToStore(decodedObj);
                     	
     	    }else
             {

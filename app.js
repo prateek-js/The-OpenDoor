@@ -16,7 +16,8 @@ Ext.application({
     requires: [
         'Ext.MessageBox',
         'TheOpenDoor.overrides.History',
-        'TheOpenDoor.localization.Localization'
+        'TheOpenDoor.localization.Localization',
+        'TheOpenDoor.helper.AppSetting'
     ],
     profiles: ['Phone', 'Tablet'],
     views: [

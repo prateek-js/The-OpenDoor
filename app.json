@@ -78,9 +78,6 @@
             "path": "app/helper/helper.js",
             "update": "delta"
         },{
-            "path": "resources/localization/locale_english.js",
-            "update": "delta"
-        },{
             "path": "app/helper/BaseUrl.js",
             "update": "delta"
         },{

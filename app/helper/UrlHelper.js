@@ -44,21 +44,21 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 		 * instead use the above serverUrl property 
 		 */
 		_developmentUrl : {
-			//createUser: 'stubs/createUser.json',
-			createUser: BaseUrl.baseUrl+'users',
+			createUser: 'stubs/createUser.json',
+			//createUser: BaseUrl.baseUrl+'users',
 			addAddress: 'stubs/dashboard.json',
 			//addAddress: BaseUrl.baseUrl+'users/'+this.user_Id+'/address',
-			//getServices: 'stubs/services.json',
+			getServices: 'stubs/services.json',
 			getSlots: 'stubs/getSlots.json',
-			getServices: BaseUrl.baseUrl+'services',
+			//getServices: BaseUrl.baseUrl+'services',
 			//getSlots: BaseUrl.baseUrl+'services/:'+serviceIdSelected+'/get_slots',
 			getAddress: 'stubs/getAddress.json',
 			//getAddress: BaseUrl.baseUrl+'users/:'+this.user_Id+'/address',
 			//updateAddress : 'stubs/getAddress.json',
 			updateAddress: BaseUrl.baseUrl+'users/:'+this.user_Id+'/update_address',
 			submitOrder: 'stubs/orderConfirmation.json',
-			allOrder: BaseUrl.baseUrl+'orders?user_Id=',
-			//allOrder: 'stubs/allOrder.json'
+			//allOrder: BaseUrl.baseUrl+'orders?user_Id=',
+			allOrder: 'stubs/allOrder.json'
 		},
 		facebookAppId: '991073507583251',
 

@@ -56,8 +56,8 @@ Ext.define('TheOpenDoor.profile.Phone', {
 			Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.SlideNavigator'));
 		}
 		else{	
-			//Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.Main'));
-			Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.LoginView'));
+			Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.Main'));
+			//Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.LoginView'));
 			//Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.DashboardView'));
 			//Ext.Viewport.add(Ext.create('TheOpenDoor.view.phone.SlideNavigator'));
 		}

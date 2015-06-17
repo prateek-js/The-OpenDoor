@@ -8,12 +8,18 @@ Ext.define('TheOpenDoor.view.phone.AllOrderView',{
 		cls : ['view-all-orders'],
 		items: [{
             xtype: 'list',
-			itemId: 'allMyBillsListId',
 			emptyText: '<div class="listEmptyMyBillsText">'+localeString.norecordsfound+'</div>',
+			id: 'allOrderList',
+			itemTpl: '{order_id}',
+			cls: 'all-order-list',
+			grouped: true,
+			infinite: false,
+			useSimpleItems: true,
+			variableHeights: false,
+			striped: true,
+			ui: 'plain',
 			store:'GetAllOrderStore',
-			itemTpl: '<div class="billsListItem"><span class="monthYear">{order_id}</span><span class="amount">{slot_start_time}</span><span class="arrowicon"><img src="resources/images/icons/backIcon@2x.png"/></span></div>',
-			flex: 5,
-			cls : [ 'mybills-allMybillsSection-container']
+			flex: 0.88
 		}]
 	}
 });

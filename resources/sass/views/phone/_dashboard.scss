@@ -3,19 +3,6 @@
 	.dashboard-view-container{
 		width: 100%;
 		margin-top: 2rem;
-		.emailfield-container{
-			width: 100%;
-			margin-bottom: 1rem;
-			.email-field{
-				width: 75%
-			}
-			.mobile-number-field{
-				width: 75%;
-			}
-			.address-textfield{
-				width: 75%;
-			}		
-		}
 		.other-textfield{
 			width: 75%;
 			margin-bottom: 1rem;
@@ -23,6 +10,9 @@
 		.save-button{
 			border: 1px solid #cccccc;
 			width: 30%;
+		}
+		.profile-details-label{
+			margin-bottom: 2rem;
 		}
 	}
 }

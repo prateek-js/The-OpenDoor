@@ -37,7 +37,8 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 			getAddress: BaseUrl.baseUrl+'users'+this.user_Id+'address',
 			updateAddress: BaseUrl.baseUrl+'users'+this.user_Id+'update_address',
 			submitOrder: BaseUrl.baseUrl+'orders',
-			allOrder: BaseUrl.baseUrl+'orders?user_Id='
+			allOrder: BaseUrl.baseUrl+'orders?user_id='+this.user_Id,
+			orderDetail : BaseUrl.baseUrl+'orders/'
 		},
 		/**
 		 * not allowed to access _developmentUrl property
@@ -57,8 +58,10 @@ Ext.define('TheOpenDoor.helper.UrlHelper', {
 			//updateAddress : 'stubs/getAddress.json',
 			updateAddress: BaseUrl.baseUrl+'users/:'+this.user_Id+'/update_address',
 			submitOrder: 'stubs/orderConfirmation.json',
-			//allOrder: BaseUrl.baseUrl+'orders?user_Id=',
-			allOrder: 'stubs/allOrder.json'
+			allOrder: BaseUrl.baseUrl+'orders?user_id='+this.user_Id
+			//allOrder: 'stubs/allOrder.json',
+			orderDetail : BaseUrl.baseUrl+'orders/',
+			orderDetail : 'stubs/orderDetail.json'
 		},
 		facebookAppId: '991073507583251',
 

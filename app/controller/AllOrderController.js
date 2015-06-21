@@ -10,10 +10,14 @@ Ext.define('TheOpenDoor.controller.AllOrderController',{
 			allOrderView : 'AllOrderView',
 			baseNavigationView: 'BaseNavigationView',
 			slideNavigator: 'SlideNavigator',
+			allOrderList : 'AllOrderView [itemId=allOrderList]'
 		},
 		control:{
 			allOrderView: {
 				initialize : 'handleAllOrderViewInit'
+			},
+			allOrderList: {
+				itemtap : 'handleOrderListTap'
 			}
 		},
 	},
@@ -34,5 +38,8 @@ Ext.define('TheOpenDoor.controller.AllOrderController',{
     },
     handleGetAllOrderFailure: function(){
     	hideSpinner();
+    },
+    handleOrderListTap: function(list, index, target, record){
+    	var orderId = record.data.order_id;
     }
 });

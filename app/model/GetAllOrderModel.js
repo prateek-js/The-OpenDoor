@@ -10,13 +10,7 @@ Ext.define('TheOpenDoor.model.GetAllOrderModel', {
 		    {name : 'order_id', type: 'string'},
 		    {name : 'slot_start_time',type: 'string'},
 		    {name : 'status', type: 'string'},
-		    {name : 'service_name', type: 'string'},
-		    {name : 'imageUrl', type: 'string',
-		    	convert: function(value, record) {
-            	  	val = "resources/images/icons/right_arrow.png";
-      				return val;
-      			}
-			},
+		    {name : 'service_name', type: 'string'}
 			// {
 			// 	name: 'orderTime',
 			// 	type: 'string',

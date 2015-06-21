@@ -9,8 +9,8 @@ Ext.define('TheOpenDoor.view.phone.AllOrderView',{
 		items: [{
             xtype: 'list',
 			emptyText: '<div class="listEmptyMyBillsText">'+localeString.norecordsfound+'</div>',
-			id: 'allOrderList',
-			itemTpl: '<div>{slot_start_time}{order_id}{imageUrl}</div>',
+			itemId: 'allOrderList',
+			itemTpl: '<div>{slot_start_time}&nbsp&nbsp{order_id}<div class="div-arrow-image"></div></div>',
 			cls: 'all-order-list',
 			infinite: false,
 			useSimpleItems: true,

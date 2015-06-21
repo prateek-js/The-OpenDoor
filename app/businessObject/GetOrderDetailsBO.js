@@ -1,13 +1,12 @@
-Ext.define('TheOpenDoor.businessObject.GetAllOrderBO', {
+Ext.define('TheOpenDoor.businessObject.GetOrderDetailsBO', {
 	extend: 'TheOpenDoor.businessObject.BaseBO',
 	requires: [
-	           'Ext.Ajax'
+	    'Ext.Ajax'
     ],
 
 	controllerObj: null,
 	successCb: null,
-	dashboardAddressData : null,
-	userId: null,
+	orderId : null,
 	failureCb: null,
 	inputDetails: null,
 
@@ -17,28 +16,30 @@ Ext.define('TheOpenDoor.businessObject.GetAllOrderBO', {
 		}
 		return this;
 	},
-	doGetAllOrder: function(successCb, failureCb){
+	doGetOrderDetail: function(orderId,successCb, failureCb){
+		this.orderId = orderId;
         this.successCb = successCb;
         this.failureCb = failureCb;
         this.inputDetails = {
+        	"order_id": dashboardAddressData.orderId,
         };
-        this.doGetAllOrderAjaxRequest();
+        this.doGetDetailOrderAjaxRequest();
 	},
 
-	doGetAllOrderAjaxRequest: function () {
+	doGetDetailOrderAjaxRequest: function () {
     	/* Call Login API */
         this.doSendAjax({
-            url: UrlHelper.getServerUrl().allOrder,
+            url: UrlHelper.getServerUrl().orderDetail+this.orderId,
             method:'GET',
 			disableCaching: false ,
             jsonData: this.inputDetails,
-            success: this.doGetAllOrderSuccess,
-            failure: this.doGetAllOrderFailure,
+            success: this.doGetOrderDetailSuccess,
+            failure: this.doGetOrderDetailFailure,
             scope: this
         });        
     },
 
-    doGetAllOrderSuccess: function(responseObj, opts){
+    doGetOrderDetailSuccess: function(responseObj, opts){
         try{
         	var allOrderStore = Ext.getStore('GetAllOrderStore');
             allOrderStore.removeAll();

@@ -44,7 +44,8 @@ Ext.application({
         'GetSlotsModel',
         'StartTimesModel',
         'AddressGetModel',
-        'GetAllOrderModel'
+        'GetAllOrderModel',
+        'OrderDetailModel'
     ],
     stores:[
         'DashboardStore',
@@ -53,7 +54,8 @@ Ext.application({
         'GetSlotsStore',
         'TimeStore',
         'AddressGetStore',
-        'GetAllOrderStore'
+        'GetAllOrderStore',
+        'OrderDetailStore'
     ],
     icon: {
         '57': 'resources/icons/Icon.png',

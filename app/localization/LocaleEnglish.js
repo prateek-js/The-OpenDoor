@@ -7,5 +7,6 @@ Ext.define('TheOpenDoor.localization.LocaleEnglish', {
 	appName: 'TheOpenDoor',
 	loading : 'Loading',
 	appExitErrorMessage : 'Do you really want to exit the <br> application?',
-	norecordsfound: 'No Records found'
+	norecordsfound: 'No Records found',
+	order_success: 'Order Placed Successfully'
 });

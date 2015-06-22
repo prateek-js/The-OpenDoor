@@ -14,7 +14,8 @@ Ext.define('TheOpenDoor.model.OrderDetailModel', {
 	        {name : 'status', type: 'string'},
 		    {name : 'total_price', type: 'string' },
 	        {name : 'order_id', type: 'string'},
-	        {name : 'service_name', type: 'string'}
+	        {name : 'service_name', type: 'string'},
+	        {name : 'address', type: 'auto'}
 	   	]
    	}
 });

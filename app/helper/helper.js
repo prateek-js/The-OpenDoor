@@ -227,7 +227,6 @@ function getLangParamFromURL(){
   * and returns time
 */
 function splitDateAndTimeRetTime(dateTime){
-    debugger;
     var inp = dateTime
     var contime = convertTimeToTimestamp(inp.slice(11,19));
     return conTime;
@@ -238,7 +237,6 @@ function splitDateAndTimeRetTime(dateTime){
   * and returns time
 */
 function splitDateAndTimeRetDate(dateTime){
-    debugger;
     var inp = dateTime;
     var conDate = convertDateToTimestamp(inp.slice(0,9));
     return conDate;

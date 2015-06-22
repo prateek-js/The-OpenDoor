@@ -21,7 +21,6 @@ Ext.define('TheOpenDoor.businessObject.GetOrderDetailsBO', {
         this.successCb = successCb;
         this.failureCb = failureCb;
         this.inputDetails = {
-        	"order_id": dashboardAddressData.orderId,
         };
         this.doGetDetailOrderAjaxRequest();
 	},
@@ -35,39 +34,47 @@ Ext.define('TheOpenDoor.businessObject.GetOrderDetailsBO', {
             jsonData: this.inputDetails,
             success: this.doGetOrderDetailSuccess,
             failure: this.doGetOrderDetailFailure,
-            scope: this
+            scope: this,
+            timeout: 30000
         });        
     },
 
     doGetOrderDetailSuccess: function(responseObj, opts){
         try{
-        	var allOrderStore = Ext.getStore('GetAllOrderStore');
-            allOrderStore.removeAll();
+        	var orderDetailStore = Ext.getStore('OrderDetailStore');
+            orderDetailStore.removeAll();
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
-            if (Ext.isObject(decodedObj)&& decodedObj.orders != null) {
-            	allOrderStore.addToStore(decodedObj.orders);
+            if (decodedObj) {
+            	orderDetailStore.addToStore(decodedObj);
+                TheOpenDoor.app.getController('AllOrderController').handleOrderDetailViewShow();
+                hideSpinner();
                     	
     	    }else
             {
             	var errorText = localeString.errorMsg_invalid_userId_password;
             	this.invokeCb (this.failureCb, [null, false, false, errorText]);
+                hideSpinner();
             }
     	}catch(e){
 			var errorText = localeString.errorMsg_defaultFailure;
 			hideSpinner();
 			//Display Error Message
 			showErrorDialog(false, false, errorText);
+            hideSpinner();
 		}
         hideSpinner();
     },
 
-    doGetAllOrderFailure: function(responseObj, opts){
-    	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ? 
-        Ext.decode (responseObj.responseText) : null;
+    doGetOrderDetailFailure: function(responseObj, opts){
+        debugger;
+    	var decodedObj = (responseObj.statusText) ? 
+        Ext.decode (responseObj.statusText) : null;
     	errorHandled = this.genericErrorCheck(responseObj, false);
     	if(!errorHandled){
             var errorText = "Error";
             this.invokeCb (this.failureCb, [responseObj, false, false, errorText]);
+            hideSpinner();
     	}
+        hideSpinner();
     }
 });

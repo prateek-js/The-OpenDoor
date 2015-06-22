@@ -45,11 +45,7 @@ Ext.define('TheOpenDoor.businessObject.GetAddressBO', {
             if (Ext.isObject(decodedObj)&& decodedObj.addresses != null) {
                 addressGetStore.removeAll();
                 addressGetStore.addToStore(decodedObj.addresses);  	
-    	    }else
-            {
-            	var errorText = localeString.errorMsg_invalid_userId_password;
-            	this.invokeCb (this.failureCb, [null, false, false, errorText]);
-            }
+    	    }
     	}catch(e){
 			var errorText = localeString.errorMsg_defaultFailure;
 			hideSpinner();
@@ -59,12 +55,13 @@ Ext.define('TheOpenDoor.businessObject.GetAddressBO', {
     },
 
     onGetAddressFailure: function(responseObj, opts){
-    	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ? 
-        Ext.decode (responseObj.responseText) : null;
-    	errorHandled = this.genericErrorCheck(responseObj, false);
-    	if(!errorHandled){
+    	var decodedObj = (responseObj.statusText);
+        errorHandled = this.genericErrorCheck(responseObj, false);
+        if(!errorHandled){
             var errorText = "Error";
-            this.invokeCb (this.failureCb, [responseObj, false, false, errorText]);
-    	}
+            AppMessage.showMessageBox(4,null,null,localeString.errorInGettingResponse);
+            hideSpinner();
+        }
+        hideSpinner();
     }
 });

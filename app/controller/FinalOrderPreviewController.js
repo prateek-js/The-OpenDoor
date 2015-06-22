@@ -73,10 +73,6 @@ Ext.define('TheOpenDoor.controller.FinalOrderPreviewController',{
             if (Ext.isObject(decodedObj)) {
             	var controller = TheOpenDoor.app.getController('TheOpenDoor.controller.FinalOrderPreviewController');
                 AppMessage.showMessageBox(1, controller.confirmOrder, null,localeString.order_success);            
-            }else
-            {
-                var errorText = localeString.errorMsg_invalid_userId_password;
-                this.invokeCb (this.failureCb, [null, false, false, errorText]);
             }
         }catch(e){
             var errorText = localeString.errorMsg_defaultFailure;
@@ -86,11 +82,18 @@ Ext.define('TheOpenDoor.controller.FinalOrderPreviewController',{
         }
 		hideSpinner();
 	},
-	handleOrderPlaceFailure: function(errObj, noInternetConnection, errMsg){
-		hideSpinner();
+	handleOrderPlaceFailure: function(responseObj){
+		var decodedObj = (responseObj.statusText);
+        errorHandled = this.genericErrorCheck(responseObj, false);
+        if(!errorHandled){
+            var errorText = "Error";
+            AppMessage.showMessageBox(4,null,null,localeString.errorInGettingResponse);
+            hideSpinner();
+        }
+        hideSpinner();
 	},
 
 	confirmOrder: function(buttonId,value,opt){
-		debugger;
+		//debugger;
 	}
 });

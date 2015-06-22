@@ -196,10 +196,6 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
                                     //this.handleAddressOrderServiceInit();
                                     this.getAddressView().refresh();
                                     this.getAddressBO().doGetAddress(successCb, failureCb);
-                                }else
-                                {
-                                    var errorText = localeString.errorMsg_invalid_userId_password;
-                                    this.invokeCb (this.failureCb, [null, false, false, errorText]);
                                 }
                             }catch(e){
                                 var errorText = localeString.errorMsg_defaultFailure;
@@ -209,9 +205,15 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
                             }
                             hideSpinner();
                         },                                    
-                        failure : function(response) {
-                            var respObj = Ext.JSON.decode(response.responseText);
-                            Ext.Msg.alert("Error", respObj.status.statusMessage);
+                        failure : function(responseObj) {
+                            var decodedObj = (responseObj.statusText);
+                            errorHandled = this.genericErrorCheck(responseObj, false);
+                            if(!errorHandled){
+                                var errorText = "Error";
+                                AppMessage.showMessageBox(4,null,null,localeString.errorInGettingResponse);
+                                hideSpinner();
+                            }
+                            hideSpinner();
                         }    
                     });
                 }
@@ -248,9 +250,15 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
                             }
                             hideSpinner();
                         },                                      
-                        failure : function(response) {
-                            var respObj = Ext.JSON.decode(response.responseText);
-                            Ext.Msg.alert("Error", respObj.status.statusMessage);
+                        failure : function(responseObj) {
+                            var decodedObj = (responseObj.statusText);
+                            errorHandled = this.genericErrorCheck(responseObj, false);
+                            if(!errorHandled){
+                                var errorText = "Error";
+                                AppMessage.showMessageBox(4,null,null,localeString.errorInGettingResponse);
+                                hideSpinner();
+                            }
+                            hideSpinner();
                         }                             
                     });
                 }

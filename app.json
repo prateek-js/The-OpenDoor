@@ -83,6 +83,10 @@
         },{
             "path": "app/helper/UrlHelper.js",
             "update": "delta"
+        },
+        {
+            "path": "resources/error/error_codes.js",
+            "update": "delta"
         }
     ],
 

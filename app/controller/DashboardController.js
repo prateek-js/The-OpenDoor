@@ -73,10 +73,6 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
                             xtype : 'SlideNavigator'
                         },true);
                         hideSpinner();
-                    }else
-                    {
-                        var errorText = localeString.errorMsg_invalid_userId_password;
-                        this.invokeCb (this.failureCb, [null, false, false, errorText]);
                     }
                 }catch(e){
                     var errorText = localeString.errorMsg_defaultFailure;
@@ -86,9 +82,17 @@ Ext.define('TheOpenDoor.controller.DashboardController',{
                 }
                 hideSpinner();
             },                                    
-            failure : function(response) {
-                var respObj = Ext.JSON.decode(response.responseText);
-                Ext.Msg.alert("Error", respObj.status.statusMessage);
+            failure : function(responseObj) {
+                // var respObj = Ext.JSON.decode(response.responseText);
+                // Ext.Msg.alert("Error", respObj.status.statusMessage);
+                var decodedObj = (responseObj.statusText);
+                errorHandled = this.genericErrorCheck(responseObj, false);
+                if(!errorHandled){
+                    var errorText = "Error";
+                    AppMessage.showMessageBox(4,null,null,localeString.errorInGettingResponse);
+                    hideSpinner();
+                }
+                hideSpinner();
             }     
         });
     }

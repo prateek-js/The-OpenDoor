@@ -27,16 +27,24 @@ Ext.define('TheOpenDoor.businessObject.GetOrderDetailsBO', {
 
 	doGetDetailOrderAjaxRequest: function () {
     	/* Call Login API */
-        this.doSendAjax({
-            url: UrlHelper.getServerUrl().orderDetail+this.orderId,
-            method:'GET',
-			disableCaching: false ,
-            jsonData: this.inputDetails,
-            success: this.doGetOrderDetailSuccess,
-            failure: this.doGetOrderDetailFailure,
-            scope: this,
-            timeout: 30000
-        });        
+        //debugger;
+        if(!isOnLine()){
+            hideSpinner();
+            AppMessage.showMessageBox(4,null,null,localeString.noInternetConnection);
+            return;
+        }
+           this.doSendAjax({
+                url: UrlHelper.getServerUrl().orderDetail+this.orderId,
+                method:'GET',
+                disableCaching: false ,
+                jsonData: this.inputDetails,
+                success: this.doGetOrderDetailSuccess,
+                failure: this.doGetOrderDetailFailure,
+                scope: this,
+                timeout: 30000
+            }); 
+        
+                
     },
 
     doGetOrderDetailSuccess: function(responseObj, opts){
@@ -49,12 +57,7 @@ Ext.define('TheOpenDoor.businessObject.GetOrderDetailsBO', {
                 TheOpenDoor.app.getController('AllOrderController').handleOrderDetailViewShow();
                 hideSpinner();
                     	
-    	    }else
-            {
-            	var errorText = localeString.errorMsg_invalid_userId_password;
-            	this.invokeCb (this.failureCb, [null, false, false, errorText]);
-                hideSpinner();
-            }
+    	    }
     	}catch(e){
 			var errorText = localeString.errorMsg_defaultFailure;
 			hideSpinner();
@@ -66,13 +69,11 @@ Ext.define('TheOpenDoor.businessObject.GetOrderDetailsBO', {
     },
 
     doGetOrderDetailFailure: function(responseObj, opts){
-        debugger;
-    	var decodedObj = (responseObj.statusText) ? 
-        Ext.decode (responseObj.statusText) : null;
+    	var decodedObj = (responseObj.statusText);
     	errorHandled = this.genericErrorCheck(responseObj, false);
     	if(!errorHandled){
             var errorText = "Error";
-            this.invokeCb (this.failureCb, [responseObj, false, false, errorText]);
+            AppMessage.showMessageBox(4,null,null,localeString.errorInGettingResponse);
             hideSpinner();
     	}
         hideSpinner();

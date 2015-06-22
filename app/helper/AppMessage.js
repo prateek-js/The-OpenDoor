@@ -3,7 +3,7 @@
  *@ ##AppMessage
  * Singleton class to popup Ext.Msgbox with appropriate messages
  */
-Ext.define('MyMaidApp.helper.AppMessage', {
+Ext.define('TheOpenDoor.helper.AppMessage', {
     singleton: true,
     alternateClassName : 'AppMessage',
     
@@ -23,11 +23,11 @@ Ext.define('MyMaidApp.helper.AppMessage', {
         'error_login' : 'error_login'
     },
     MESSAGE_TYPES_LOCALES: {
-        'error': localeString.error_generic_title,
+        'error': "Error",
         'info': '',
-        'warning': localeString.error_generic_warning,
-        'success': localeString.error_generic_success,
-        'failure': localeString.error_generic_failure
+        'warning': "Warning",
+        'success': "Success",
+        'failure': "Failure"
     },
     lastMessageType: null,
     

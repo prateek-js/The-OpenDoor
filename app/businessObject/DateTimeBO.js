@@ -32,13 +32,14 @@ Ext.define('TheOpenDoor.businessObject.DateTimeBO', {
 	doDateTimeAjaxRequest: function () {
     	/* Call Login API */
         this.doSendAjax({
-            url: UrlHelper.getServerUrl().getSlots,
+            url: UrlHelper.getServerUrl().getSlots+this.serviceId+'/slots',
             method:'GET',
 			disableCaching: false ,
             jsonData: this.inputDetails,
             success: this.onDateTimeSuccess,
             failure: this.onDateTimeFailure,
-            scope: this
+            scope: this,
+            timeout: 30000
         });        
     },
 
@@ -46,15 +47,17 @@ Ext.define('TheOpenDoor.businessObject.DateTimeBO', {
         try{
         	var getSlotsStore = Ext.getStore('GetSlotsStore');
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
-            if (Ext.isObject(decodedObj) && decodedObj.get_slots != null) {
-            	getSlotsStore.addToStore(decodedObj.get_slots);
-                getSlotsStore.load();      	
+            if (Ext.isObject(decodedObj) && decodedObj.slots != null) {
+            	getSlotsStore.addToStore(decodedObj.slots);
+                getSlotsStore.load();
+                hideSpinner();      	
     	    }
     	}catch(e){
 			var errorText = localeString.errorMsg_defaultFailure;
 			hideSpinner();
 			//Display Error Message
 			showErrorDialog(false, false, errorText);
+            hideSpinner();
 		}
     },
 

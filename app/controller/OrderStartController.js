@@ -41,6 +41,7 @@ Ext.define('TheOpenDoor.controller.OrderStartController',{
         return Ext.create(boName, this);
     },
 	handledateTimeViewInit: function(){
+        showSpinner("Loading");
         var me = this,
         successCb = this.handleGetServicesSucess,
         failureCb = this.handleGetServicesFailure;

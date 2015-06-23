@@ -50,14 +50,14 @@ Ext.define('TheOpenDoor.controller.FinalOrderPreviewController',{
 		finalOrderObj = finalOrder;
 	},
 	handleOrderPlaceBtnTap: function(){
-		showSpinner();
+		showSpinner("Loading");
 		Ext.Ajax.request({
             url: UrlHelper.getServerUrl().submitOrder,
             method: 'POST',          
             headers: {'Content-Type': 'text/json'},
             waitTitle: 'Connecting',
             waitMsg: 'Sending data...',                                     
-            params: {
+            jsonData: {
                 "service_id": finalOrderObj.service_id,
                 "address_id": finalOrderObj.address_id,
                 "start_time": finalOrderObj.start_time
@@ -72,7 +72,11 @@ Ext.define('TheOpenDoor.controller.FinalOrderPreviewController',{
             var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
             if (Ext.isObject(decodedObj)) {
             	var controller = TheOpenDoor.app.getController('TheOpenDoor.controller.FinalOrderPreviewController');
-                AppMessage.showMessageBox(1, controller.confirmOrder, null,localeString.order_success);            
+            	Ext.Msg.alert("Success",localeString.order_success, function(buttonId, value, opt) {
+                    	controller.confirmOrder();
+                    }, 
+                controller);
+               // AppMessage.showMessageBox(1, controller.confirmOrder, null,localeString.order_success);            
             }
         }catch(e){
             var errorText = localeString.errorMsg_defaultFailure;

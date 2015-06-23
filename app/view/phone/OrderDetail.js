@@ -28,8 +28,18 @@ Ext.define('TheOpenDoor.view.phone.OrderDetail',{
             	align: 'center'
             },
 			items:[{
-
-			}]
+                xtype: 'button',
+                cls: 'cancel-button',
+                itemId: 'cancelButton',
+                text: 'Cancel',
+                hidden: false
+			},{
+                xtype: 'button',
+                cls: 'cancel-button',
+                itemId: 'submitFeedbackButton',
+                text: 'Submit FeedBack',
+                hidden: false
+            }]
 		}]
 	}
 });

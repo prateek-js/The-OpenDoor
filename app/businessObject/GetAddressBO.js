@@ -44,13 +44,15 @@ Ext.define('TheOpenDoor.businessObject.GetAddressBO', {
         	var decodedObj = (responseObj.responseText && responseObj.responseText.length) ?  Ext.decode (responseObj.responseText) : null;
             if (Ext.isObject(decodedObj)&& decodedObj.addresses != null) {
                 addressGetStore.removeAll();
-                addressGetStore.addToStore(decodedObj.addresses);  	
+                addressGetStore.addToStore(decodedObj.addresses);
+                hideSpinner(); 	
     	    }
     	}catch(e){
 			var errorText = localeString.errorMsg_defaultFailure;
 			hideSpinner();
 			//Display Error Message
 			showErrorDialog(false, false, errorText);
+            hideSpinner();
 		}
     },
 

@@ -76,6 +76,21 @@ Ext.define("TheOpenDoor.view.phone.SlideNavigator", {
 	        			   maskOnOpen: true
 	        		   }]
 	        	   },{
+	        	   		title : 'Your Profile',
+	        		   titlename : 'Your Profile',
+	        		   slideButton: true,
+	        		   cls: 'newUI-header-style',
+	        		   items: [{
+	        			   xtype: 'toolbar',
+	        			   docked: 'top',
+	        			   title: 'Your Profile',
+	        			   cls: 'home-slider-toolbar',
+	        			   ui:'null'
+	        		   },{
+	        			   xtype: 'ProfileView',
+	        			   maskOnOpen: true
+	        		   }]
+	        	   },{
 	        		   title : 'LOG OUT',
 	        		   titlename : 'logout',
 	        		   slideButton: true,

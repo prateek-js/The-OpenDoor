@@ -45,7 +45,8 @@ Ext.define('TheOpenDoor.businessObject.DashboardBO', {
             jsonData: this.inputDetails,
             success: this.onAddAddressSuccess,
             failure: this.onAddAddressFailure,
-            scope: this
+            scope: this,
+            timeout: 30000
         });        
     },
 

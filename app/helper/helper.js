@@ -241,3 +241,20 @@ function splitDateAndTimeRetDate(dateTime){
     var conDate = convertDateToTimestamp(inp.slice(0,9));
     return conDate;
 }
+
+function genericErrorCheck(responseObj) {
+        debugger;
+        var errorHandled = false,
+            errorText = localeString.unable_process_error;
+        if (responseObj.status != null && responseObj.status == 401) {
+            errorText = localeString.session_timeout_error;
+            errorHandled = true;
+        }
+        
+        
+        if (errorHandled) {
+            showErrorDialog(null, true, true);
+        }
+        
+        return errorHandled;
+    }

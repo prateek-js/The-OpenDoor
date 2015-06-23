@@ -51,7 +51,8 @@ Ext.define('TheOpenDoor.businessObject.LoginBO', {
             jsonData: this.inputDetails,
             success: this.onLoginSuccess,
             failure: this.onLoginFailure,
-            scope: this
+            scope: this,
+            timeout: 30000
         });        
     },
 

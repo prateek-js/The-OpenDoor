@@ -34,7 +34,8 @@ Ext.define('TheOpenDoor.businessObject.GetAllOrderBO', {
             jsonData: this.inputDetails,
             success: this.doGetAllOrderSuccess,
             failure: this.doGetAllOrderFailure,
-            scope: this
+            scope: this,
+            timeout: 30000
         });        
     },
 

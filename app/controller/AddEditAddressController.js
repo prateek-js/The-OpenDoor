@@ -67,6 +67,7 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
     },
 
     handleAddressOrderServiceInit: function(){
+        showSpinner(localeString.loading);
         var me = this;
         successCb = this.handleGetAddressSucess,
         failureCb = this.handleGetAddressFailure;
@@ -196,6 +197,7 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
                                     //this.handleAddressOrderServiceInit();
                                     this.getAddressView().refresh();
                                     this.getAddressBO().doGetAddress(successCb, failureCb);
+                                    hideSpinner();
                                 }
                             }catch(e){
                                 var errorText = localeString.errorMsg_defaultFailure;

@@ -36,7 +36,8 @@ Ext.application({
         'OrderStartController',
         'AddEditAddressController',
         'FinalOrderPreviewController',
-        'AllOrderController'
+        'AllOrderController',
+        'ProfileController'
     ],
     models:[
         'DashboardModel',

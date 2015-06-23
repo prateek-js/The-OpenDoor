@@ -8,6 +8,8 @@ Ext.define('TheOpenDoor.controller.FinalOrderPreviewController',{
 		refs: {
 			finalOrderPreview: 'FinalOrderPreview',
 			baseNavigationView: 'BaseNavigationView',
+			myNavView: 'MyNavView',
+			slideNavigator: 'SlideNavigator',
 			finalOrderBackButton: 'FinalOrderPreview [itemId=headerPanel] button[itemId=backButtonId]',
 			selectedServiceLabel: 'FinalOrderPreview [itemId=selectedServiceLabel]',
 			selectedTimeLabel: 'FinalOrderPreview [itemId=selectedTimeLabel]',
@@ -87,8 +89,9 @@ Ext.define('TheOpenDoor.controller.FinalOrderPreviewController',{
 		hideSpinner();
 	},
 	handleOrderPlaceFailure: function(responseObj){
+		debugger;
 		var decodedObj = (responseObj.statusText);
-        errorHandled = this.genericErrorCheck(responseObj, false);
+        errorHandled = genericErrorCheck(responseObj, false);
         if(!errorHandled){
             var errorText = "Error";
             AppMessage.showMessageBox(4,null,null,localeString.errorInGettingResponse);
@@ -98,6 +101,13 @@ Ext.define('TheOpenDoor.controller.FinalOrderPreviewController',{
 	},
 
 	confirmOrder: function(buttonId,value,opt){
-		//debugger;
+		var myNavView = this.getMyNavView();
+    	if(myNavView){
+            Ext.Viewport.remove(myNavView, true);
+        }
+        this.addToViewPort({
+            xtype : 'SlideNavigator'
+        },true);
+        this.getSlideNavigator().list.select(0);
 	}
 });

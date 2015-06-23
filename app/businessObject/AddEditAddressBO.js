@@ -45,7 +45,8 @@ Ext.define('TheOpenDoor.businessObject.AddEditAddressBO', {
             jsonData: this.inputDetails,
             success: this.onAddEditAddressSuccess,
             failure: this.onAddEditAddressFailure,
-            scope: this
+            scope: this,
+            timeout: 30000
         });        
     },
 

@@ -65,7 +65,7 @@ Ext.define('TheOpenDoor.view.phone.order.AddressItem',{
                     fn: function(ElementObj, e) {
                         var me = this, addressOrderServiceView = null;
                         addressView = me.getParent().up('#addressView').down('#addressItemCnt');
-                        addressView.setBtnRef('edit');                        
+                        addressView.setBtnRef('delete');                        
                     }
                 }]
         	}]

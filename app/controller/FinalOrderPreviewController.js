@@ -89,7 +89,6 @@ Ext.define('TheOpenDoor.controller.FinalOrderPreviewController',{
 		hideSpinner();
 	},
 	handleOrderPlaceFailure: function(responseObj){
-		debugger;
 		var decodedObj = (responseObj.statusText);
         errorHandled = genericErrorCheck(responseObj, false);
         if(!errorHandled){

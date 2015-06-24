@@ -243,7 +243,6 @@ function splitDateAndTimeRetDate(dateTime){
 }
 
 function genericErrorCheck(responseObj) {
-        debugger;
         var errorHandled = false,
             errorText = localeString.unable_process_error;
         if (responseObj.status != null && responseObj.status == 401) {

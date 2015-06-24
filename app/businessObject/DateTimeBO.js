@@ -30,10 +30,9 @@ Ext.define('TheOpenDoor.businessObject.DateTimeBO', {
 	},
 
 	doDateTimeAjaxRequest: function () {
-    	/* Call Login API */
         this.doSendAjax({
-           // url: UrlHelper.getServerUrl().getSlots+this.serviceId+'/slots',
-            url: UrlHelper.getServerUrl().getSlots,
+            url: UrlHelper.getServerUrl().getSlots+this.serviceId+'/slots',
+            //url: UrlHelper.getServerUrl().getSlots,
             method:'GET',
 			disableCaching: false ,
             jsonData: this.inputDetails,

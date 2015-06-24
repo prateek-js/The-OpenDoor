@@ -3,7 +3,8 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
 	extend : 'TheOpenDoor.controller.BaseController',
 	requires: [
         'TheOpenDoor.businessObject.GetAddressBO',
-        'TheOpenDoor.businessObject.AddEditAddressBO'
+        'TheOpenDoor.businessObject.AddEditAddressBO',
+        'TheOpenDoor.businessObject.DeleteAddressBO'
     ],
 	config : {
         addressIdSelected: '',
@@ -12,6 +13,7 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         btnRef : '',
         addressBO: 'TheOpenDoor.businessObject.GetAddressBO',
         addEditAddressBO: 'TheOpenDoor.businessObject.AddEditAddressBO',
+        deleteAddressBO: 'TheOpenDoor.businessObject.DeleteAddressBO',
         refs:{
             addressOrderService: 'AddressOrderService',
             baseNavigationView: 'BaseNavigationView',
@@ -65,6 +67,9 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
     applyAddEditAddressBO: function(boName) {
         return Ext.create(boName, this);
     },
+    applyDeleteAddressBO: function(boName){
+        return Ext.create(boName, this);
+    },
 
     handleAddressOrderServiceInit: function(){
         showSpinner(localeString.loading);
@@ -114,7 +119,12 @@ Ext.define('TheOpenDoor.controller.AddEditAddressController',{
         }
     },
     handleAddressDelete: function(clickedAddressId){
-        alert("address deleted");
+        showSpinner("Loading");
+        this.getDeleteAddressBO().doAddressDelete(clickedAddressId,successCb, failureCb);
+    },
+    handleAddressViewRefresh: function(){
+        this.getAddressView().refresh();
+        this.getAddressBO().doGetAddress(successCb, failureCb);
     },
     handleAddEditAddressInit: function(){
         if(btnRef == "edit"){

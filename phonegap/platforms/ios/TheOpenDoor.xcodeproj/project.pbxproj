@@ -50,6 +50,11 @@
 		72C04DD580E0459F84CED7C7 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBE38AD96D444799A39D38E /* CDVInAppBrowser.m */; };
 		C359ED15FF3E4AC2A19560C6 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EF0367551AA54FC081285453 /* CDVStatusBar.m */; };
 		8BA26114164645F9B17C1393 /* YoikScreenOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5833801308834A8EA0CABA84 /* YoikScreenOrientation.m */; };
+		F5A439963B7E46089705CA21 /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2D74C8B460437BAB34ECBA /* FacebookConnectPlugin.m */; };
+		DCCE6C25AC9448FDB20552B8 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E81EB88A7D04CDBB8A83681 /* FacebookSDK.framework */; };
+		03E3C0A234F84032821BFE34 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E291E8D3ED4994A7C36DE0 /* libsqlite3.dylib */; };
+		CED334D7795C4ED2B4354A0A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762E53CB207449E0979C84F1 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		39C0E2533C4D4052A191229C /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C0AEC4BF5E4DDB92CC5DF9 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +135,12 @@
 		EB62C2D70C2B405DA2B84D2F /* CDVStatusBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVStatusBar.h"; path = "org.apache.cordova.statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		5833801308834A8EA0CABA84 /* YoikScreenOrientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "YoikScreenOrientation.m"; path = "net.yoik.cordova.plugins.screenorientation/YoikScreenOrientation.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		A28B0C2EDA2748DFAB4E16F4 /* YoikScreenOrientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "YoikScreenOrientation.h"; path = "net.yoik.cordova.plugins.screenorientation/YoikScreenOrientation.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		7C2D74C8B460437BAB34ECBA /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "FacebookConnectPlugin.m"; path = "com.phonegap.plugins.facebookconnect/FacebookConnectPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		3D6CA6FF6FAF4DD0BB40E169 /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "FacebookConnectPlugin.h"; path = "com.phonegap.plugins.facebookconnect/FacebookConnectPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		3E81EB88A7D04CDBB8A83681 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "FacebookSDK.framework"; path = "TheOpenDoor/Plugins/com.phonegap.plugins.facebookconnect/FacebookSDK.framework"; sourceTree = "<group>"; };
+		80E291E8D3ED4994A7C36DE0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsqlite3.dylib"; path = "usr/lib/libsqlite3.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
+		762E53CB207449E0979C84F1 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Social.framework"; path = "System/Library/Frameworks/Social.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		55C0AEC4BF5E4DDB92CC5DF9 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Accounts.framework"; path = "System/Library/Frameworks/Accounts.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +161,10 @@
 				83B948EEB1CC4706AC733E4C /* MediaPlayer.framework in Frameworks */,
 				7D1EB49E178B4DB3A60BECA6 /* Security.framework in Frameworks */,
 				DD6734E873E4439798B43A64 /* SystemConfiguration.framework in Frameworks */,
+				DCCE6C25AC9448FDB20552B8 /* FacebookSDK.framework in Frameworks */,
+				03E3C0A234F84032821BFE34 /* libsqlite3.dylib in Frameworks */,
+				CED334D7795C4ED2B4354A0A /* Social.framework in Frameworks */,
+				39C0E2533C4D4052A191229C /* Accounts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +266,10 @@
 				B5310C42C56F4A169A1BEB97 /* MediaPlayer.framework */,
 				9BF27BD3059243ED9E91F771 /* Security.framework */,
 				D57F676CC71E4484910332C2 /* SystemConfiguration.framework */,
+				3E81EB88A7D04CDBB8A83681 /* FacebookSDK.framework */,
+				80E291E8D3ED4994A7C36DE0 /* libsqlite3.dylib */,
+				762E53CB207449E0979C84F1 /* Social.framework */,
+				55C0AEC4BF5E4DDB92CC5DF9 /* Accounts.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -274,6 +293,8 @@
 				EB62C2D70C2B405DA2B84D2F /* CDVStatusBar.h */,
 				5833801308834A8EA0CABA84 /* YoikScreenOrientation.m */,
 				A28B0C2EDA2748DFAB4E16F4 /* YoikScreenOrientation.h */,
+				7C2D74C8B460437BAB34ECBA /* FacebookConnectPlugin.m */,
+				3D6CA6FF6FAF4DD0BB40E169 /* FacebookConnectPlugin.h */,
 			);
 			name = Plugins;
 			path = "TheOpenDoor/Plugins";
@@ -472,6 +493,7 @@
 				72C04DD580E0459F84CED7C7 /* CDVInAppBrowser.m in Sources */,
 				C359ED15FF3E4AC2A19560C6 /* CDVStatusBar.m in Sources */,
 				8BA26114164645F9B17C1393 /* YoikScreenOrientation.m in Sources */,
+				F5A439963B7E46089705CA21 /* FacebookConnectPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +577,9 @@
 					"$(inherited)",
 					"\"TheOpenDoor/Plugins/nl.x-services.plugins.googleplus\"",
 					"\"TheOpenDoor/Plugins/nl.x-services.plugins.googleplus\"",
+					"\"TheOpenDoor/Plugins/com.phonegap.plugins.facebookconnect\"",
+					"\"TheOpenDoor/Plugins/com.phonegap.plugins.facebookconnect\"",
+					"\"TheOpenDoor/Plugins/com.phonegap.plugins.facebookconnect\"",
 				);
 			};
 			name = Debug;
@@ -591,6 +616,9 @@
 					"$(inherited)",
 					"\"TheOpenDoor/Plugins/nl.x-services.plugins.googleplus\"",
 					"\"TheOpenDoor/Plugins/nl.x-services.plugins.googleplus\"",
+					"\"TheOpenDoor/Plugins/com.phonegap.plugins.facebookconnect\"",
+					"\"TheOpenDoor/Plugins/com.phonegap.plugins.facebookconnect\"",
+					"\"TheOpenDoor/Plugins/com.phonegap.plugins.facebookconnect\"",
 				);
 			};
 			name = Release;

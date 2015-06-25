@@ -34,6 +34,13 @@ module.exports = [
         "merges": [
             "cordova.plugins.screenorientation"
         ]
+    },
+    {
+        "file": "plugins/com.phonegap.plugins.facebookconnect/facebookConnectPlugin.js",
+        "id": "com.phonegap.plugins.facebookconnect.FacebookConnectPlugin",
+        "clobbers": [
+            "facebookConnectPlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -43,6 +50,7 @@ module.exports.metadata =
     "org.apache.cordova.inappbrowser": "0.6.0",
     "org.apache.cordova.statusbar": "0.1.10",
     "net.yoik.cordova.plugins.screenorientation": "1.3.2",
+    "com.phonegap.plugins.facebookconnect": "0.11.0",
     "com.google.playservices": "21.0.0"
 }
 // BOTTOM OF METADATA
